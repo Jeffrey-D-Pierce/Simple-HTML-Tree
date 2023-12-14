@@ -1,0 +1,260 @@
+body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10px;
+}
+
+.horizontal .entity {
+  position: relative;
+  /* Needed for absolute positioning of pseudo-elements */
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  margin: 2px;
+}
+
+.vertical .entity {
+  position: relative;
+  /* Needed for absolute positioning of pseudo-elements */
+  margin: 2px;
+}
+
+.entity-contents {
+  position: relative;
+}
+
+.entity-contents-display {
+  border: 1px solid lightgray;
+  padding: 5px;
+  background-color: white;
+  /* Sets the background color to white */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Adds a shadow */
+  width: 100px;
+}
+.entity-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.favicon {
+  width: 8px;
+  /* Adjust as needed */
+  height: 8px;
+  /* Adjust as needed */
+  margin-left: 0px;
+  margin-right: 2px;
+  margin-top: -1px;
+}
+
+.entity-title {
+  font-weight: bold;
+  font-size: 8px;
+  cursor: default;
+  width: 100%;
+
+}
+
+.entity-title-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
+.screenshot {
+  max-width: 100%;
+  /* Ensures image does not exceed the width of its container */
+  height: auto;
+  /* Maintains aspect ratio */
+}
+
+.notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+}
+
+.note {
+  background: #e8e8e8;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.children-container {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.entity,
+.children-container {
+  flex-grow: 0;
+}
+
+/* Vertical line from the child up and down */
+.horizontal .entity>.children-container::before {
+  content: '';
+  position: absolute;
+  top: 0%;
+  /* Align with the middle of the parent */
+  left: -12px;
+  height: calc(100% + 2px);
+  /* Make sure the line is long enough to reach the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Vertical line from the child up */
+.horizontal .entity.last-child>.children-container::before {
+  content: '';
+  position: absolute;
+  top: 0%;
+  /* Align with the middle of the parent */
+  left: -12px;
+  height: calc(50% + 2px);
+  /* Make sure the line is long enough to reach the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Vertical line from the child down */
+.horizontal .entity.first-child>.children-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  /* Align with the middle of the parent */
+  left: -12px;
+  height: calc(100% + 2px);
+  /* Make sure the line is long enough to reach the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Horizontal line from parent to the vertical line */
+.horizontal .entity-contents::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -12px;
+  /* Adjust so that it connects with the vertical line */
+  width: 12px;
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Horizontal line from parent to the vertical line */
+.horizontal .entity-contents::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100%);
+  /* Adjust so that it connects with the vertical line */
+  width: 12px;
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.horizontal .entity.only-child::after,
+.horizontal .entity.only-child>.children-container::before {
+  display: none;
+  /* Hide lines for an only child */
+}
+
+.horizontal .entity.no-children .entity-contents::after {
+  display: none;
+  /* Hide lines for an only child */
+}
+
+.line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: -20px;
+  height: 2px;
+  background-color: transparent;
+}
+
+/* Horizontal line from parent to the vertical line */
+.vertical .entity-contents::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -1em;
+  /* Adjust so that it connects with the vertical line */
+  width: 1em;
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.vertical .entity.first-child:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  /* Align with the center of the last child */
+  left: -1em;
+  /* Position to the left of the content */
+  height: calc(100% + 4px);
+  /* The height of the line should be to the top of the children container from the middle of the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Shadow for the line */
+}
+
+.vertical .entity.only-child .entity-contents:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  /* Align with the center of the last child */
+  left: -1em;
+  /* Position to the left of the content */
+  height: calc(50% + 2px);
+  /* The height of the line should be to the top of the children container from the middle of the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Shadow for the line */
+}
+
+.vertical .entity.last-child .entity-contents:after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  /* Align with the center of the last child */
+  left: -1em;
+  /* Position to the left of the content */
+  height: calc(50% + 4px);
+  /* The height of the line should be to the top of the children container from the middle of the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Shadow for the line */
+}
+
+.vertical .entity.middle-child:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  /* Align with the center of the last child */
+  left: -1em;
+  /* Position to the left of the content */
+  height: calc(100% + 4px);
+  /* The height of the line should be to the top of the children container from the middle of the last child */
+  border-left: 2px solid #000;
+  /* The vertical line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Shadow for the line */
+}
