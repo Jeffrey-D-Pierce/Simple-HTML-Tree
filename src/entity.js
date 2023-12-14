@@ -30,7 +30,8 @@ function children(parent){
   const children = parent.children;
   let cHTML = ''
   if (children && children.length > 0) children.forEach(child => {
-    cHTML += Entity(child, parent);    
+    child.parent = parent;
+    cHTML += Entity(child);    
   });
   return cHTML;
 }
@@ -38,7 +39,8 @@ function children(parent){
 /* siblingClass
 Given entityInfo and parentInfo, returns the class needed to relate the entity to siblings.
 */
-function siblingClass(entityInfo, parentInfo){
+function siblingClass(entityInfo){
+  const parentInfo = entityInfo.parent;
   let sibling = "orphan";
   if (parentInfo === undefined || parentInfo.children === undefined){
   } else if (parentInfo.children.length === 1){
@@ -57,11 +59,12 @@ function siblingClass(entityInfo, parentInfo){
 Given the entityInfo and parentInfo
 Returns HTML for the entity and all children.
 */
-export function Entity(entityInfo, parentInfo){
+export function Entity(entityInfo){
+  const parentInfo = entityInfo.parent;
   const childrenClass =
     entityInfo.children && entityInfo.children.length ? "" : "no-children";
   return `
-  <div class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
+  <div id='${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
     <div class='entity-contents'>
       <div class='entity-contents-display'>
         <div class="entity-header">
