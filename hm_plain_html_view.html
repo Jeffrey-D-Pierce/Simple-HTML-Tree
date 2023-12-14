@@ -14,11 +14,23 @@
     <link href="./src/main.css" rel="stylesheet" />
   </head>
   <body>
+    <select name="options" id="options-select">
+      <option value="0">Horizontal</option>
+      <option value="1">Vertical</option>
+      <option value="2">Centered</option>
+    </select>
     <div id="root"></div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         renderMap(document.getElementById("root"))
       })
+      var selectElement = document.getElementById('options-select');
+
+      selectElement.addEventListener('change', (event) => {
+          var value = event.target.value;
+          // Call a function here with the selected value
+          renderMap(document.getElementById("root"), value);
+      });
     </script>
   </body>
 </html>

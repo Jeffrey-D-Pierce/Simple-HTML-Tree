@@ -39,7 +39,7 @@ function children(parent){
 Given entityInfo and parentInfo, returns the class needed to relate the entity to siblings.
 */
 function siblingClass(entityInfo, parentInfo){
-  let sibling = "middle-child";
+  let sibling = "orphan";
   if (parentInfo === undefined || parentInfo.children === undefined){
   } else if (parentInfo.children.length === 1){
     sibling = "only-child";
@@ -47,6 +47,8 @@ function siblingClass(entityInfo, parentInfo){
       sibling = "first-child"
   } else if (parentInfo.children[parentInfo.children.length - 1].id == entityInfo.id){
       sibling = "last-child"
+  } else if (parentInfo.children.length > 1){
+      sibling = "middle-child"
   }
   return sibling;
 }
@@ -81,9 +83,7 @@ export function Entity(entityInfo, parentInfo){
       </div>
     </div>
     <div class='children-container'>
-      <div class='children'>
-        ${children(entityInfo)}
-      </div>
+      ${children(entityInfo)}
     </div>
   </div>
   `;

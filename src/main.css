@@ -4,21 +4,6 @@ body {
   font-size: 10px;
 }
 
-.horizontal .entity {
-  position: relative;
-  /* Needed for absolute positioning of pseudo-elements */
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-  margin: 2px;
-}
-
-.vertical .entity {
-  position: relative;
-  /* Needed for absolute positioning of pseudo-elements */
-  margin: 2px;
-}
-
 .entity-contents {
   position: relative;
 }
@@ -32,6 +17,7 @@ body {
   /* Adds a shadow */
   width: 100px;
 }
+
 .entity-header {
   display: flex;
   align-items: center;
@@ -95,6 +81,134 @@ body {
   flex-grow: 0;
 }
 
+
+.centered .entity {
+  position:relative;
+  display: flex;
+  margin-top: 0;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centered .entity-contents {
+  margin-bottom: 2em;
+}
+.centered .children-container {
+  margin: 0px;
+  display: flex;
+  align-items: flex-start; /* Align children to the top */
+  flex-direction: row;
+  justify-content: center; /* This will center the children horizontally */
+  overflow: visible; /* This ensures the line is not clipped */
+}
+
+/* Additional styles to ensure proper spacing between children */
+.centered .children-container > .entity {
+  margin: 0 10px; /* Adjust the spacing as needed */
+}
+
+/* Vertical line from parent to the horizontal line */
+.centered .entity-contents::after {
+  content: '';
+  position: absolute;
+  top: calc(100%);
+  left: calc(50%);
+  /* Adjust so that it connects with the vertical line */
+  height: 1em;
+  /* This is the length of the line */
+  border-left: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.centered .entity.no-children .entity-contents::after {
+  display: none;
+  /* Hide lines for an only child */
+}
+
+/* Vertical line from parent to the horizontal line */
+.centered .entity::after {
+  content: '';
+  position: absolute;
+  top: -1em;
+  left: calc(50%);
+  /* Adjust so that it connects with the vertical line */
+  height: 1em;
+  /* This is the length of the line */
+  border-left: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  overflow: visible; /* This ensures the line is not clipped */
+  z-index: 1; /* This ensures the line is above other elements */
+}
+
+
+/* Horizontal line to the right */
+.centered .entity.first-child::before {
+  content: '';
+  position: absolute;
+  top: -1em;
+  left: 50%;
+  /* Adjust so that it connects with the vertical line */
+  width: calc(50% + 1em);
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  overflow: visible; /* This ensures the line is not clipped */
+  z-index: 1; /* This ensures the line is above other elements */
+}
+
+/* Horizontal line to the left */
+.centered .entity.last-child::before {
+  content: '';
+  position: absolute;
+  top: -1em;
+  left: -1em;
+  /* Adjust so that it connects with the vertical line */
+  width: calc(50% + 1em);
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  overflow: visible; /* This ensures the line is not clipped */
+  z-index: 1; /* This ensures the line is above other elements */
+}
+
+/* Horizontal line to the left and right */
+.centered .entity.middle-child::before {
+  content: '';
+  position: absolute;
+  top: -1em;
+  left: -1em;
+  /* Adjust so that it connects with the vertical line */
+  width: calc(100% + 2em);
+  /* This is the length of the line */
+  border-top: 2px solid #000;
+  /* The horizontal line */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  overflow: visible; /* This ensures the line is not clipped */
+  z-index: 1; /* This ensures the line is above other elements */
+}
+
+
+.centered .entity.only-child::before {
+  display: none;
+}
+
+.centered .entity.orphan::after {
+  display: none;
+}
+
+.horizontal .entity {
+  position: relative;
+  /* Needed for absolute positioning of pseudo-elements */
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  margin: 2px;
+}
+
 /* Vertical line from the child up and down */
 .horizontal .entity>.children-container::before {
   content: '';
@@ -102,7 +216,7 @@ body {
   top: 0%;
   /* Align with the middle of the parent */
   left: -12px;
-  height: calc(100% + 2px);
+  height: calc(100% + 4px);
   /* Make sure the line is long enough to reach the last child */
   border-left: 2px solid #000;
   /* The vertical line */
@@ -113,7 +227,7 @@ body {
 .horizontal .entity.last-child>.children-container::before {
   content: '';
   position: absolute;
-  top: 0%;
+  top: -1px;
   /* Align with the middle of the parent */
   left: -12px;
   height: calc(50% + 2px);
@@ -176,14 +290,17 @@ body {
   /* Hide lines for an only child */
 }
 
-.line {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: -20px;
-  height: 2px;
-  background-color: transparent;
+.horizontal .entity.orphan>.entity-contents::before {
+  display: none;
 }
+
+
+.vertical .entity {
+  position: relative;
+  /* Needed for absolute positioning of pseudo-elements */
+  margin: 2px;
+}
+
 
 /* Horizontal line from parent to the vertical line */
 .vertical .entity-contents::before {
@@ -257,4 +374,8 @@ body {
   /* The vertical line */
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   /* Shadow for the line */
+}
+
+.vertical .entity.orphan>.entity-contents::before {
+  display: none;
 }

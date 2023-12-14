@@ -8,8 +8,9 @@ function displayItems() {
   });
   return nodesHTML;
 }
-function renderMap(element){
-  const orientation = 1;
+
+function renderMap(element, version){
+  const orientation = version || 0;
   const orientations = ["horizontal", "vertical", "centered"]
   orientations.forEach(o => element.classList.remove(o));
   element.classList.add(orientations[orientation] );
