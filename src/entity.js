@@ -1,28 +1,4 @@
 
-/* notes
-given an array of notes
-return divs of the notes
-*/
-function notes(notes){
-  let notesHTML = ""
-  if (notes && notes.length > 0){
-    notes.map(n => {
-      console.log(n)
-      notesHTML += `<div>${n}</div>`;
-    })
-  }
-  return notesHTML;
-}
-
-/* children
-Given the pagInfo, returns the img HTML with the screenshot
-*/
-function screenShot(entityInfo){
-  return entityInfo && entityInfo.screenshotSrc
-    ? `<img class='screeshot' src='${entityInfo.screenshotSrc}'/>`
-    : ``;
-}
-
 /* children
 Given the parent, returns the rendered children as HTML
 */
@@ -31,6 +7,7 @@ function children(parent){
   let cHTML = ''
   if (children && children.length > 0) children.forEach(child => {
     child.parent = parent;
+    child.customContent = parent.customContent;
     cHTML += Entity(child);    
   });
   return cHTML;
@@ -67,22 +44,7 @@ export function Entity(entityInfo){
   <div id='${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
     <div class='entity-contents'>
       <div class='entity-contents-display'>
-        <div class="entity-header">
-          <img class='favicon' src='${
-            entityInfo.faviconUrl || "./src/images/unknown-18-16.png"
-          }'/>
-          <div class='entity-title'>
-            <div class='entity-title-text' title='${
-              entityInfo.title || "Title"
-            }'>
-              ${entityInfo.title || "Title"}
-            </div>
-          </div>
-        </div>
-        ${screenShot(entityInfo)}
-        <div class='notes'>
-          ${notes(entityInfo.notes)}
-        </div>
+        ${contents(entityInfo)}
       </div>
     </div>
     <div class='children-container'>
@@ -92,3 +54,16 @@ export function Entity(entityInfo){
   `;
 }
 
+
+function contents(entityInfo){
+  // If there is a title, use it, otherwise use the id
+  function defaultTitle(entityInfo){
+    const title = entityInfo.title || entityInfo.id
+    return `<div class='entity-title-text' title='${title}'>
+      ${title}
+    </div>
+    `
+  }
+
+  return entityInfo.customContent ? entityInfo.customContent(entityInfo) : defaultTitle(entityInfo)
+}
