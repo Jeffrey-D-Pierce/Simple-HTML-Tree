@@ -19,6 +19,13 @@
       <option value="1">Vertical</option>
       <option value="2">Centered</option>
     </select>
+    <!-- Slider element -->
+    <div>
+      <input type="range" id="scale-slider" min="10" max="300" value="100">
+
+      <!-- Display the value -->
+      <div id="slider-value">Current Value: 100</div>
+    </div>
     <div id="root"></div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -31,6 +38,8 @@
           // Call a function here with the selected value
           renderMap(document.getElementById("root"), value);
       });
+
+
     </script>
   </body>
 </html>

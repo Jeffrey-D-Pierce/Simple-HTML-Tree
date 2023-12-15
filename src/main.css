@@ -294,6 +294,10 @@ body {
   display: none;
 }
 
+.horizontal .entity.orphan>.children-container::before {
+  display: none;
+}
+
 
 .vertical .entity {
   position: relative;
