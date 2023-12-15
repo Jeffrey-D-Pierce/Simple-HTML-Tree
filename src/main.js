@@ -74,30 +74,25 @@ let isDragging = false;
 let originalMouseX, originalMouseY;
 
 draggableElement.addEventListener('mousedown', function(e) {
-    isDragging = true;
-    //console.log(draggableElement.style)
-    let orginalTranslation = getTranslateValues(draggableElement.style.transform);
-    originalMouseX = e.clientX - orginalTranslation.x;
-    originalMouseY = e.clientY - orginalTranslation.y;
-    console.log('originalMouseX', originalMouseX, 'originalMouseY', originalMouseY)
+  isDragging = true;
+  let orginalTranslation = getTranslateValues(draggableElement.style.transform);
+  originalMouseX = e.clientX - orginalTranslation.x;
+  originalMouseY = e.clientY - orginalTranslation.y;
 });
 
 document.addEventListener('mousemove', function(e) {
-    if (isDragging) {
-      let scaleValue = getScaleValue(draggableElement.style.transform);
-      console.log('clientX', e.clientX, 'clientY', e.clientY)
-      let deltaX = (e.clientX - originalMouseX) / scaleValue;
-      let deltaY = (e.clientY  - originalMouseY) / scaleValue;
-      console.log('deltaX', deltaX, 'deltaY', deltaY)
-      // draggableElement.style.transform = `translate(${originalX + deltaX}px, ${originalY + deltaY}px)`;
-      updateTranslation(draggableElement, deltaX, deltaY)
-    }
+  if (isDragging) {
+    let scaleValue = getScaleValue(draggableElement.style.transform);
+    let deltaX = (e.clientX - originalMouseX) / scaleValue;
+    let deltaY = (e.clientY  - originalMouseY) / scaleValue;
+    updateTranslation(draggableElement, deltaX, deltaY)
+  }
 });
 
 document.addEventListener('mouseup', function(e) {
-    if (isDragging) {
-        isDragging = false;
-    }
+  if (isDragging) {
+      isDragging = false;
+  }
 });
 
 
