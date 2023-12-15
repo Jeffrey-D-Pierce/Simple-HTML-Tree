@@ -1,5 +1,5 @@
 import { Entity } from './entity.js'
-import items from "./items.json" assert { type: "json" };
+import items from "./items_html.json" assert { type: "json" };
 
 
 
@@ -21,8 +21,7 @@ function customContent(entityInfo) {
     let notesHTML = ""
     if (notes && notes.length > 0){
       notes.map(n => {
-        console.log(n)
-        notesHTML += `<div>${n}</div>`;
+        notesHTML += `<div title="${n}" class="note" >${n}</div>`;
       })
     }
     return notesHTML;
@@ -58,8 +57,8 @@ function displayItems() {
   return nodesHTML;
 }
 
-function renderMap(element, version){
-  const orientation = version || 0;
+function renderMap(element, style){
+  const orientation = style || 0;
   const orientations = ["horizontal", "vertical", "centered"]
   orientations.forEach(o => element.classList.remove(o));
   element.classList.add(orientations[orientation] );

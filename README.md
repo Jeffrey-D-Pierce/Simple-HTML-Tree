@@ -8,29 +8,33 @@ The item data requires a unique id, and children with unique id. All other data 
 
 ```JSON
   {
+    "id": 1, // Only required key. Must be unique
     "title": "Template variable", // This is the default label when there is no customContent, otherwise the id will display
-    "id": 1, // Must be unique
-    "notes": [], // Template variable
-    "faviconUrl": "Template variable",
+    "notes": [], // Example Template variable
+    "faviconUrl": "", // Example Template variable
+    "customContent": "Function(item)" // Used to render content
     "children": [
-      { "id": "Must be unique" }
+      { "id": 2 } 
     ]
   }
 ```
 
 ### Custom Content (customContent)
 
+If there is a customContent function, it will be called with the itemInfo to render the item inside the div with the class "entity-contents-display".
+
 If there is no customContent function on the item, the title (if there is one) or id will display in the rectangle.
 
-If there is a customContent function, it will be called with the itemInfo to render the item.
-
-The function customContent is set at the root item and inherited by all children. In the rendering of children, the customContent function is copied to the child along with a reference to the parent. The function customContent has access to the child and parent info.
+Set the function once at the root item where it is inherited by all children. In the rendering of children, the customContent function is copied to the child along with a reference to the parent. The function customContent has access to the child and parent info.
 
 ## Realizations
 
-### Nodes and Edges are specific to graphs
+### Hierarchies are not Graphs
 
-Hierarchical data has a controller-to-controlled relationship such as parent-child or supervisor-subordinate.
+Unlike graphs with nodes and edges, hierarchical data has a controller-to-controlled relationship such as parent-child or supervisor-subordinate. This makes identifying the relationships and managing them easier.
+
+- Assumptions of inheritance are possible.
+- The rectangle of space is determined by the parent and all descendants.
 
 ### Horizontal vs. Vertical vs. Centered is controlled by the parent positioning the children
 
@@ -44,7 +48,7 @@ The CSS broke and this image is what triggered the realization.
 ### Rendering of relationships is controlled by sibling type
 
 If an item has childeren, there is a line from the parent.
-All childern have a line to toward the parent.
+All childern have a line to toward the parent. Siblings have a connecting line to other siblings.
 The connecting line is determined by the sibling order:
 
 - only-child - has no connecting line to other siblings.
