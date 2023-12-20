@@ -39,17 +39,6 @@ body {
   margin-bottom: 2px;
   width: 100%;
 }
-
-.favicon {
-  width: 8px;
-  /* Adjust as needed */
-  height: 8px;
-  /* Adjust as needed */
-  margin-left: 0px;
-  margin-right: 2px;
-  margin-top: -1px;
-}
-
 .entity-title {
   font-weight: bold;
   font-size: 8px;
@@ -64,27 +53,6 @@ body {
   max-width: 90%;
   min-width: 30px;
   cursor: default;
-}
-
-.screenshot {
-  max-width: 100%;
-  /* Ensures image does not exceed the width of its container */
-  height: auto;
-  /* Maintains aspect ratio */
-}
-
-.notes {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  cursor: default;
-}
-
-.note {
-  margin-left: 1em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .children-container {
@@ -202,7 +170,7 @@ body {
   /* Adjust so that it connects with the vertical line */
   width: calc(100% + 2em);
   /* This is the length of the line */
-  border-top: 2calc(var(--connector-line-width)) solid #000;
+  border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: visible; /* This ensures the line is not clipped */
@@ -248,7 +216,7 @@ body {
   top: -1px;
   /* Align with the middle of the parent */
   left: -12px;
-  height: calc(50% + calc(var(--connector-line-width)));
+  height: calc(50% + 1px);
   /* Make sure the line is long enough to reach the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
@@ -360,7 +328,7 @@ body {
   /* Align with the center of the last child */
   left: -1em;
   /* Position to the left of the content */
-  height: calc(50% + calc(var(--connector-line-width)));
+  height: calc(50% + 2px);
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
@@ -375,7 +343,7 @@ body {
   /* Align with the center of the last child */
   left: -1em;
   /* Position to the left of the content */
-  height: calc(50% + 4px);
+  height: calc(50% + 2px);
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */

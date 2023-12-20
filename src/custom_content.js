@@ -1,4 +1,4 @@
-export function customContent(entityInfo) {
+function customContent(entityInfo) {
   /* children
   Given the pagInfo, returns the img HTML with the screenshot
   */
