@@ -1,6 +1,5 @@
 import { Entity } from './HTML_Hierarchy.js'
 import { customContent } from "./custom_content.js";
-import items_constraints from "./items_constraints.json" assert { type: "json" };
 (function() {
 
 // Assuming the file name or path might change dynamically
@@ -16,7 +15,6 @@ import items_constraints from "./items_constraints.json" assert { type: "json" }
     console.error("Error loading the module:", error);
   });
 
-  let items = items_constraints;
   
   document.addEventListener('mousedown', function(e) {
     const elementRect = e.target.getBoundingClientRect();
@@ -28,7 +26,7 @@ import items_constraints from "./items_constraints.json" assert { type: "json" }
   });
   
   
-  function displayItems() {
+  function displayItems(items) {
     let nodesHTML = "";
     const item = items[0]
     // For all the top level entities
@@ -42,13 +40,13 @@ import items_constraints from "./items_constraints.json" assert { type: "json" }
   }
   
   function render(hierarchyInformation){
-    const { rootElement, style } = hierarchyInformation
+    const { rootElement, style, items } = hierarchyInformation
     const element = document.getElementById(rootElement)
     const orientation = style || 0;
     const orientations = ["horizontal", "vertical", "centered"]
     orientations.forEach(o => element.classList.remove(o));
     element.classList.add(orientations[orientation] );
-    element.innerHTML = displayItems(customContent);
+    element.innerHTML = items ? displayItems(items) : "No Items Array";
   }
   
   if (window) window.HTML_Hierarchy = { render }

@@ -1,10 +1,11 @@
-function dragControl(root) {
+function dragControl(root, onlyRoot) {
   let draggableElement = document.getElementById(root);
   draggableElement.style.transformOrigin = 'top left'; // This sets the origin point of the scale transformation
   let isDragging = false;
   let originalMouseX, originalMouseY;
   
   draggableElement.addEventListener('mousedown', function(e) {
+    if (onlyRoot && e.target.id != root) return
     isDragging = true;
     let orginalTranslation = getTranslateValues(draggableElement.style.transform);
     originalMouseX = Number(e.clientX - (orginalTranslation.x || 0));

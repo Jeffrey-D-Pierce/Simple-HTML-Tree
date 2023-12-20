@@ -1,4 +1,4 @@
-[
+const items_html = [
   {
     "title": "[document]",
     "id": 645,

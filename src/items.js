@@ -1,4 +1,4 @@
-[
+const items_example = [
   {
     "title": "Grand Parent",
     "id": 1,

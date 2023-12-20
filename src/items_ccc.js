@@ -1,4 +1,4 @@
-[
+const items_ccc = [
   {
     "title": "CCC Framework",
     "id": 1,

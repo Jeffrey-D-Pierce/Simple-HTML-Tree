@@ -41,7 +41,7 @@ export function Entity(entityInfo){
   const childrenClass =
     entityInfo.children && entityInfo.children.length ? "" : "no-children";
   return `
-  <div id='${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
+  <div id='entity-${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
     <div class='entity-contents'>
       <div class='entity-contents-display'>
         ${contents(entityInfo)}

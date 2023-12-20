@@ -13,51 +13,61 @@
     <script src="./src/main.js" type="module"></script>
     <script src="./src/scale_control.js"></script>
     <script src="./src/drag_control.js"></script>
+    <script src="./src/items_ccc.js"></script>
+    <script src="./src/items_constraints.js"></script>
+    <script src="./src/items.js"></script>
+    <script src="./src/items_html.js"></script>
     <link href="./src/main.css" rel="stylesheet" />
   </head>
   <body>
-    <select name="example-data" id="example-data-select">
-      <option value="3">Constraints</option>
-      <option value="0">HTML</option>
-      <option value="1">Example</option>
-      <option value="2">CCC</option>
-    </select>
-    <select name="options" id="options-select">
-      <option value="0">Horizontal</option>
-      <option value="1">Vertical</option>
-      <option value="2">Centered</option>
-    </select>
-    <!-- Slider element -->
-    <div>
-      <input type="range" id="scale-slider" min="10" max="300" value="100">
+    <div id="control-panel">
+      <select name="example-data" id="example-data-select">
+        <option value="1">Example</option>
+        <option value="0">HTML</option>
+        <option value="2">CCC</option>
+        <option value="3">Constraints</option>
+      </select>
+      <select name="options" id="options-select">
+        <option value="0">Horizontal</option>
+        <option value="1">Vertical</option>
+        <option value="2">Centered</option>
+      </select>
+      <!-- Slider element -->
+      <div>
+        <input type="range" id="scale-slider" min="10" max="300" value="100">
 
-      <!-- Display the value -->
-      <div id="slider-value">Current Value: 100</div>
+        <!-- Display the value -->
+        <div id="slider-value">Current Value: 100</div>
+      </div>
     </div>
     <div id="root-container">
       <div id="root"  class="css-connector"></div>
     </div>
     <script>
+      let items
       document.addEventListener('DOMContentLoaded', function() {
-        HTML_Hierarchy.render({rootElement: "root"})
+        items = items_example
+        HTML_Hierarchy.render({rootElement: "root", items});
+        document.getElementById("root").addEventListener("mousedown", (e)=>{
+          console.log("mousedown", e.target)
+        })
+        document.getElementById("root").addEventListener("mouseup", (e)=>{
+          console.log("mouseup", e.target)
+        })
       })
       var selectElement = document.getElementById('options-select');
 
       selectElement.addEventListener('change', (event) => {
           var value = event.target.value;
           // Call a function here with the selected value
-          HTML_Hierarchy.render({ rootElement: "root", style: value });
+          HTML_Hierarchy.render({ rootElement: "root", style: value, items });
       });
 
       document.getElementById('example-data-select').addEventListener('change', (event) => {
-        const items_html=  loadJSON("./items_html.json");
-        const items_example=  loadJSON("./items_example.json");
-        const items_ccc=  loadJSON("./items_ccc.json");
-        let items
-        if(event.target.value === "0") {
-          items = items_html
-        } else if (event.target.value === "1") {
+        if(event.target.value === "1") {
           items = items_example
+        } else if (event.target.value === "0") {
+          items = items_html
         } else if (event.target.value === "2") {
           items = items_ccc
         } else {
@@ -65,17 +75,7 @@
         }
         HTML_Hierarchy.render({rootElement: "root", items});
       });
-      function loadJSON(filename){
-        fetch('example.json')
-        .then(response => response.json())
-        .then(data => {
-            return data
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-      }
-        // Select the slider and the value display element
+      // Select the slider and the value display element
       const slider = document.getElementById('scale-slider');
       const sliderValueDisplay = document.getElementById('slider-value');
       
@@ -95,6 +95,7 @@
       
       });
       dragControl('root')
+      dragControl('control-panel', true)
 
       </script>
   </body>

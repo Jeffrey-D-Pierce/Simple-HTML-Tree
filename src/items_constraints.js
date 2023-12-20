@@ -1,4 +1,4 @@
-[
+const items_constraints = [
   {
     "title": "Constraints",
     "id": 1,
