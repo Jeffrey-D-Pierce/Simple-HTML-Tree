@@ -1,4 +1,4 @@
-export function dragControl(root) {
+function dragControl(root) {
   let draggableElement = document.getElementById(root);
   draggableElement.style.transformOrigin = 'top left'; // This sets the origin point of the scale transformation
   let isDragging = false;
@@ -65,14 +65,3 @@ export function dragControl(root) {
 }
 
 
-export function updateScale(element, newScale) {
-  let transform = element.style.transform;
-  let scaleRegex = /scale\(\d*\.?\d+\)/;
-  let newScaleTransform = `scale(${newScale})`;
-
-  if (transform.match(scaleRegex)) {
-    element.style.transform = transform.replace(scaleRegex, newScaleTransform);
-  } else {
-    element.style.transform += ` ${newScaleTransform}`;
-  }
-}

@@ -11,6 +11,8 @@
     />
     <title>History Map</title>
     <script src="./src/main.js" type="module"></script>
+    <script src="./src/scale_control.js"></script>
+    <script src="./src/drag_control.js"></script>
     <link href="./src/main.css" rel="stylesheet" />
   </head>
   <body>
@@ -37,17 +39,63 @@
     </div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        renderMap(document.getElementById("root"))
+        HTML_Hierarchy.render({rootElement: "root"})
       })
       var selectElement = document.getElementById('options-select');
 
       selectElement.addEventListener('change', (event) => {
           var value = event.target.value;
           // Call a function here with the selected value
-          renderMap(document.getElementById("root"), value);
+          HTML_Hierarchy.render({ rootElement: "root", style: value });
       });
 
+      document.getElementById('example-data-select').addEventListener('change', (event) => {
+        const items_html=  loadJSON("./items_html.json");
+        const items_example=  loadJSON("./items_example.json");
+        const items_ccc=  loadJSON("./items_ccc.json");
+        let items
+        if(event.target.value === "0") {
+          items = items_html
+        } else if (event.target.value === "1") {
+          items = items_example
+        } else if (event.target.value === "2") {
+          items = items_ccc
+        } else {
+          items = items_constraints
+        }
+        HTML_Hierarchy.render({rootElement: "root", items});
+      });
+      function loadJSON(filename){
+        fetch('example.json')
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+      }
+        // Select the slider and the value display element
+      const slider = document.getElementById('scale-slider');
+      const sliderValueDisplay = document.getElementById('slider-value');
+      
+      // Add an event listener for the 'input' event on the slider
+      slider.addEventListener('input', function() {
+        // Update the display with the current value of the slider
+        sliderValueDisplay.textContent = 'Current Value: ' + this.value;
+        // Select the root element
+        var rootElement = document.getElementById('root'); // replace 'root' with your actual root element's ID
+      
+        // Set the scale
+        var scaleValue = this.value / 100; // for 80% scale
+      
+        // Apply the transform style to scale
+        // rootElement.style.transform = 'scale(' + scaleValue + ')';
+        updateScale(rootElement, scaleValue)
+      
+      });
+      dragControl('root')
 
-    </script>
+      </script>
   </body>
 </html>
