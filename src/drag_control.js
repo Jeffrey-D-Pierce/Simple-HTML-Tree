@@ -17,6 +17,7 @@ export function dragControl(root) {
       let deltaX = (e.clientX - originalMouseX) / (scaleValue || 1);
       let deltaY = (e.clientY  - originalMouseY) / (scaleValue || 1);
       updateTranslation(draggableElement, deltaX, deltaY)
+      e.preventDefault();
     }
   });
   
@@ -39,7 +40,6 @@ export function dragControl(root) {
     } else {
       element.style.transform = String(`${newTranslateTransform} `) + (element.style.transform || "");
     }
-    console.log(element.style.transform)
   }
 
 

@@ -3,7 +3,10 @@ import { customContent } from "./custom_content.js";
 import { dragControl, updateScale } from "./drag_control.js"
 import items_html from "./items_html.json" assert { type: "json" };
 import items_example from "./items.json" assert { type: "json" };
-let items = items_html;
+import items_ccc from "./items_ccc.json" assert { type: "json" };
+import items_constraints from "./items_constraints.json" assert { type: "json" };
+
+let items = items_constraints;
 
 document.addEventListener('mousedown', function(e) {
   const elementRect = e.target.getBoundingClientRect();
@@ -62,8 +65,12 @@ slider.addEventListener('input', function() {
 document.getElementById('example-data-select').addEventListener('change', (event) => {
   if(event.target.value === "0") {
     items = items_html
-  } else {
+  } else if (event.target.value === "1") {
     items = items_example
+  } else if (event.target.value === "2") {
+    items = items_ccc
+  } else {
+    items = items_constraints
   }
   renderMap(document.getElementById("root"));
 });

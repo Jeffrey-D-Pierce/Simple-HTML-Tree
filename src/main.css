@@ -4,11 +4,21 @@ body {
   font-size: 10px;
 }
 
+#root-container {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .entity-contents {
   position: relative;
 }
 
 .entity-contents-display {
+  padding: 2px;
+  background-color: white;
+}
+
+.entity-contents-display .boxed-entity {
   border: 1px solid lightgray;
   padding: 5px;
   background-color: white;
@@ -40,7 +50,6 @@ body {
   font-size: 8px;
   cursor: default;
   width: 100%;
-
 }
 
 .entity-title-text {
@@ -48,6 +57,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 90%;
+  min-width: 30px;
+  cursor: default;
 }
 
 .screenshot {
@@ -109,7 +120,7 @@ body {
 }
 
 /* Vertical line from parent to the horizontal line */
-.centered .entity-contents::after {
+.centered.css-connector .entity-contents::after {
   content: '';
   position: absolute;
   top: calc(100%);
@@ -122,13 +133,13 @@ body {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.centered .entity.no-children .entity-contents::after {
+.centered.css-connector .entity.no-children .entity-contents::after {
   display: none;
   /* Hide lines for an only child */
 }
 
 /* Vertical line from parent to the horizontal line */
-.centered .entity::after {
+.centered.css-connector .entity::after {
   content: '';
   position: absolute;
   top: -1em;
@@ -145,7 +156,7 @@ body {
 
 
 /* Horizontal line to the right */
-.centered .entity.first-child::before {
+.centered.css-connector .entity.first-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -161,7 +172,7 @@ body {
 }
 
 /* Horizontal line to the left */
-.centered .entity.last-child::before {
+.centered.css-connector .entity.last-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -177,7 +188,7 @@ body {
 }
 
 /* Horizontal line to the left and right */
-.centered .entity.middle-child::before {
+.centered.css-connector .entity.middle-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -193,11 +204,11 @@ body {
 }
 
 
-.centered .entity.only-child::before {
+.centered.css-connector .entity.only-child::before {
   display: none;
 }
 
-.centered .entity.orphan::after {
+.centered.css-connector .entity.orphan::after {
   display: none;
 }
 
@@ -211,7 +222,7 @@ body {
 }
 
 /* Vertical line from the child up and down */
-.horizontal .entity>.children-container::before {
+.horizontal.css-connector .entity>.children-container::before {
   content: '';
   position: absolute;
   top: 0%;
@@ -225,7 +236,7 @@ body {
 }
 
 /* Vertical line from the child up */
-.horizontal .entity.last-child>.children-container::before {
+.horizontal.css-connector .entity.last-child>.children-container::before {
   content: '';
   position: absolute;
   top: -1px;
@@ -239,7 +250,7 @@ body {
 }
 
 /* Vertical line from the child down */
-.horizontal .entity.first-child>.children-container::before {
+.horizontal.css-connector .entity.first-child>.children-container::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -253,7 +264,7 @@ body {
 }
 
 /* Horizontal line from parent to the vertical line */
-.horizontal .entity-contents::before {
+.horizontal.css-connector .entity-contents::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -267,7 +278,7 @@ body {
 }
 
 /* Horizontal line from parent to the vertical line */
-.horizontal .entity-contents::after {
+.horizontal.css-connector .entity-contents::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -280,22 +291,22 @@ body {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.horizontal .entity.only-child::after,
-.horizontal .entity.only-child>.children-container::before {
+.horizontal.css-connector .entity.only-child::after,
+.horizontal.css-connector .entity.only-child>.children-container::before {
   display: none;
   /* Hide lines for an only child */
 }
 
-.horizontal .entity.no-children .entity-contents::after {
+.horizontal.css-connector .entity.no-children .entity-contents::after {
   display: none;
   /* Hide lines for an only child */
 }
 
-.horizontal .entity.orphan>.entity-contents::before {
+.horizontal.css-connector .entity.orphan>.entity-contents::before {
   display: none;
 }
 
-.horizontal .entity.orphan>.children-container::before {
+.horizontal.css-connector .entity.orphan>.children-container::before {
   display: none;
 }
 
@@ -308,7 +319,7 @@ body {
 
 
 /* Horizontal line from parent to the vertical line */
-.vertical .entity-contents::before {
+.vertical.css-connector .entity-contents::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -321,7 +332,7 @@ body {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.vertical .entity.first-child:after {
+.vertical.css-connector .entity.first-child:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -336,7 +347,7 @@ body {
   /* Shadow for the line */
 }
 
-.vertical .entity.only-child .entity-contents:after {
+.vertical.css-connector .entity.only-child .entity-contents:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -351,7 +362,7 @@ body {
   /* Shadow for the line */
 }
 
-.vertical .entity.last-child .entity-contents:after {
+.vertical.css-connector .entity.last-child .entity-contents:after {
   content: "";
   position: absolute;
   top: -2px;
@@ -366,7 +377,7 @@ body {
   /* Shadow for the line */
 }
 
-.vertical .entity.middle-child:after {
+.vertical.css-connector .entity.middle-child:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -381,6 +392,6 @@ body {
   /* Shadow for the line */
 }
 
-.vertical .entity.orphan>.entity-contents::before {
+.vertical.css-connector .entity.orphan>.entity-contents::before {
   display: none;
 }

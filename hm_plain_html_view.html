@@ -15,8 +15,10 @@
   </head>
   <body>
     <select name="example-data" id="example-data-select">
+      <option value="3">Constraints</option>
       <option value="0">HTML</option>
       <option value="1">Example</option>
+      <option value="2">CCC</option>
     </select>
     <select name="options" id="options-select">
       <option value="0">Horizontal</option>
@@ -30,7 +32,9 @@
       <!-- Display the value -->
       <div id="slider-value">Current Value: 100</div>
     </div>
-    <div id="root"></div>
+    <div id="root-container">
+      <div id="root"  class="css-connector"></div>
+    </div>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         renderMap(document.getElementById("root"))
