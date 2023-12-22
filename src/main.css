@@ -21,22 +21,13 @@ body {
 .entity-contents-display {
   padding: 2px;
   background-color: white;
+  max-width: 10em;
 }
 
-.entity-contents-display .boxed-entity {
-  border: 1px solid lightgray;
-  padding: 5px;
-  background-color: white;
-  /* Sets the background color to white */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  /* Adds a shadow */
-  width: 100px;
-}
 
 .entity-header {
   display: flex;
   align-items: center;
-  margin-bottom: 2px;
   width: 100%;
 }
 .entity-title {
@@ -50,7 +41,7 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 90%;
+  max-width: 95%;
   min-width: 30px;
   cursor: default;
 }
@@ -104,7 +95,6 @@ body {
   /* This is the length of the line */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .centered.css-connector .entity.no-children .entity-contents::after {
@@ -123,7 +113,6 @@ body {
   /* This is the length of the line */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: visible; /* This ensures the line is not clipped */
   z-index: 1; /* This ensures the line is above other elements */
 }
@@ -140,7 +129,6 @@ body {
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: visible; /* This ensures the line is not clipped */
   z-index: 1; /* This ensures the line is above other elements */
 }
@@ -156,7 +144,6 @@ body {
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: visible; /* This ensures the line is not clipped */
   z-index: 1; /* This ensures the line is above other elements */
 }
@@ -172,7 +159,6 @@ body {
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   overflow: visible; /* This ensures the line is not clipped */
   z-index: 1; /* This ensures the line is above other elements */
 }
@@ -192,7 +178,6 @@ body {
   display: flex;
   align-items: center;
   vertical-align: middle;
-  margin: 2px;
 }
 
 /* Vertical line from the child up and down */
@@ -206,7 +191,6 @@ body {
   /* Make sure the line is long enough to reach the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Vertical line from the child up */
@@ -220,7 +204,6 @@ body {
   /* Make sure the line is long enough to reach the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Vertical line from the child down */
@@ -234,7 +217,6 @@ body {
   /* Make sure the line is long enough to reach the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Horizontal line from child to the vertical line */
@@ -248,7 +230,6 @@ body {
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Horizontal line from parent to the vertical line */
@@ -258,11 +239,10 @@ body {
   top: 50%;
   left: calc(100%);
   /* Adjust so that it connects with the vertical line */
-  width: 11px;
+  width: 9px;
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .horizontal.css-connector .entity.only-child::after,
@@ -303,7 +283,6 @@ body {
   /* This is the length of the line */
   border-top: calc(var(--connector-line-width)) solid #000;
   /* The horizontal line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .vertical.css-connector .entity.first-child:after {
@@ -317,7 +296,6 @@ body {
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   /* Shadow for the line */
 }
 
@@ -332,7 +310,6 @@ body {
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   /* Shadow for the line */
 }
 
@@ -347,7 +324,6 @@ body {
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   /* Shadow for the line */
 }
 
@@ -362,7 +338,6 @@ body {
   /* The height of the line should be to the top of the children container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   /* Shadow for the line */
 }
 

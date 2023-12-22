@@ -32,10 +32,9 @@
       entityInfo.children && entityInfo.children.length && !entityInfo.hideChildren ? "" : "no-children";
     return `
     <div id='entity-${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
+
       <div class='entity-contents'>
-        <div class='entity-contents-display'>
-          ${contents(entityInfo)}
-        </div>
+        ${contents(entityInfo)}
       </div>
       <div class='children-container'>
         ${ children(entityInfo)}
@@ -51,7 +50,8 @@
     if (parent.hideChildren) return "";
     const children = parent.children;
     let cHTML = ''
-    if (children && children.length > 0) children.forEach(child => {
+    if (children && children.length > 0) children.forEach((child, i) => {
+      //if (i > 1) return
       child.parent = parent;
       child.customContent = parent.customContent;
       cHTML += Parent(child);    
@@ -83,9 +83,10 @@
     // If there is a title, use it, otherwise use the id
     function defaultTitle(entityInfo){
       const title = entityInfo.title || entityInfo.id
-      return `<div class='entity-title-text' title='${title}'>
+      return `<div class='entity-contents-display'>
+      <div class='entity-title-text' title='${title}'>
         ${title}
-      </div>`
+        </div></div>`
     }
 
     return entityInfo.customContent ? entityInfo.customContent(entityInfo) : defaultTitle(entityInfo)

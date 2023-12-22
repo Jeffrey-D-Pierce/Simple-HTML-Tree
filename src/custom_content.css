@@ -32,18 +32,32 @@
   text-overflow: ellipsis;
 }
 
+.entity-contents-display.boxed-entity {
+  border: 1px solid lightgray;
+  padding: 5px;
+  background-color: white;
+  /* Sets the background color to white */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Adds a shadow */
+  width: 100px;
+}
+
 .css-connector  .entity::after {
-  box-shadow: none !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .css-connector  .entity-contents::before {
-  box-shadow: none !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .css-connector  .entity-contents::after {
-  box-shadow: none !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .css-connector .children-container::before {
-  box-shadow: none !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.horizontal .entity {
+  margin: 1px;
 }

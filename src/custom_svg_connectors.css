@@ -1,0 +1,62 @@
+.connector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensures that the SVG doesn't block mouse events for underlying elements */
+  z-index: 10000;
+  overflow: visible;
+}
+
+
+.entity-contents-display {
+  position: relative; /* Required for absolute positioning of children */
+  overflow: visible;
+  /* Other styles for the entity div */
+}
+
+.centered .upper-anchor, .centered .lower-anchor {
+  position: absolute; /* Absolute positioning */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for the element's width to center it */
+  width: 2px; /* Width of the circle */
+  height: 2px; /* Height of the circle */
+  background-color: none; /* Circle color */
+  border-radius: 50%; /* Makes the shape a circle */
+}
+
+.centered .upper-anchor {
+  top: 0; /* Position at the top of the entity div */
+  margin-top: -2px; /* Adjust for the height of the circle to align the center */
+}
+
+.centered .lower-anchor {
+  bottom: 0; /* Position at the bottom of the entity div */
+  margin-bottom: -2px; /* Adjust for the height of the circle to align the center */
+}  
+
+.horizontal {
+  position: relative; /* Required for absolute positioning of children */
+  /* Other styles for the horizontal div */
+}
+
+.horizontal .upper-anchor, .horizontal .lower-anchor {
+  position: absolute; /* Absolute positioning */
+  width: 2px; /* Width of the circle */
+  height: 2px; /* Height of the circle */
+  background-color: none;  /* Circle color */
+  border-radius: 50%; /* Makes the shape a circle */
+  top: 50%; /* Align vertically in the middle */
+  transform: translateY(-50%); /* Adjust for the element's height to center it */
+}
+
+.horizontal .upper-anchor {
+  left: 0; /* Position at the left edge of the horizontal div */
+  margin-left: -2px; /* Adjust for the width of the circle to align the center */
+}
+
+.horizontal .lower-anchor {
+  right: 0; /* Position at the right edge of the horizontal div */
+  margin-right: -2px; /* Adjust for the width of the circle to align the center */
+}

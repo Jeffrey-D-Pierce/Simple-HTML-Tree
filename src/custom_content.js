@@ -22,7 +22,8 @@ function customContent(entityInfo) {
     return notesHTML;
   }
 
-  return `<div class="entity-header">
+  return `<div class='entity-contents-display boxed-entity'>
+    <div class="entity-header">
     <img class='favicon' src='${ entityInfo.faviconUrl || "./src/images/unknown-18-16.png"
     }'/>
     <div class='entity-title'>
@@ -36,6 +37,7 @@ function customContent(entityInfo) {
     ${screenShot(entityInfo)}
     <div class='notes'>
     ${notes(entityInfo.notes)}
+    </div>
     </div>
   `
 }

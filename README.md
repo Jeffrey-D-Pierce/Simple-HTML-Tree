@@ -54,4 +54,4 @@ The connecting line is determined by the sibling order:
 - only-child - has no connecting line to other siblings.
 - first-child - the connecting line starts at the line to the parent and extends toward siblings.
 - middle-child - the connecting line extends toward both the first-child and the last-child
-- last-child - the conntecting line starts at the line toward the parent and extends toward siblings.
+- last-child - the connecting line starts at the line toward the parent and extends toward siblings.

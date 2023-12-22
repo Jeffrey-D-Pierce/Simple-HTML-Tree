@@ -45,7 +45,7 @@ const items_example = [
             "children": [
               {
                 "title": "Child",
-                "id": 4,
+                "id": 107,
                 "notes": [],
                 "faviconUrl":
                   "https://instructure-uploads.s3.amazonaws.com/account_201710000000000001/attachments/1252398/download%20%25285%2529.ico",
@@ -123,7 +123,7 @@ const items_example = [
               },
                             {
                 "title": "Child",
-                "id": 14,
+                "id": 108,
                 "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                 "faviconUrl":
                   "https://instructure-uploads.s3.amazonaws.com/account_201710000000000001/attachments/1252398/download%20%25285%2529.ico",
