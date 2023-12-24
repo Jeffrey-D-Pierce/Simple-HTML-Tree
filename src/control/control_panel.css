@@ -1,0 +1,42 @@
+#description {
+  font-family: Arial, sans-serif;
+  display: block;
+  width: 100%;
+}
+
+#description>h1 {  
+  text-align: center;
+}
+
+#control-panel {
+  font-family: Arial, sans-serif;
+  width: 250px; /* Adjust the width as necessary */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  padding-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  background-color: #fff;
+  display: inline-block;
+}
+
+#control-panel-title {
+  display: block;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+label {
+  width: 80px;
+  height: 20px;
+  text-align: right;
+  display: inline-block;
+}
+
+
+#options-select, #scale-slider {
+  width: 150px;
+}
+

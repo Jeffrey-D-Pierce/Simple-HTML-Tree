@@ -10,11 +10,11 @@
       content="Parent Child Hierarchy"
     />
     <title>SVG Connectors - Parent Child Hierarchy</title>
-    <script src="./src/main.js" type="module"></script>
-    <link href="./src/main.css" rel="stylesheet" />
+    <script src="./src/core/main.js" type="module"></script>
+    <link href="./src/core/main.css" rel="stylesheet" />
     <!-- Custom Content -->
-    <script src="./src/custom_svg_connectors.js"></script>
-    <link href="./src/custom_svg_connectors.css" rel="stylesheet" />
+    <script src="./src/svg_connectors/custom_svg_connectors.js"></script>
+    <link href="./src/svg_connectors/custom_svg_connectors.css" rel="stylesheet" />
     <!-- Example Data -->
     <script src="./src/example_data/items.js"></script>
   </head>
@@ -37,7 +37,7 @@
           hideChildren: true, // If true, the tree is trimmed
           items 
         }
-        Parent_Child_Hierarchy.render(instructions);
+        Simple_Tree.render(instructions);
       })
     </script>
 

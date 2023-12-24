@@ -1,14 +1,40 @@
-# Vanilla HTML Hierarchical Relationships
+# Simple HTML Tree
 
-## Expectations
+## How to use
 
-### Item Data
+### Minimum
+
+The minimla configuration requires main.js to render the HTML and main.css to style the entities and relationships.
+
+![Alt text](./documentation/images/minimum.png)
+
+#### Files
+
+- main.js - Creates the html using JavaScript templates
+- main.css - Styles the entities and relationships
+
+#### Item Data
+
+The item data requires a unique id, and children with unique id.
+
+```JSON
+  {
+    "id": 1, 
+    "children": [
+      { "id": 2 } 
+    ]
+  }
+```
+
+### Customization
+
+#### Custom Item Data
 
 The item data requires a unique id, and children with unique id. All other data is optional.
 
 ```JSON
   {
-    "id": 1, // Only required key. Must be unique
+    "id": 1, // Should be unique.
     "title": "Template variable", // This is the default label when there is no customContent, otherwise the id will display
     "notes": [], // Example Template variable
     "faviconUrl": "", // Example Template variable
@@ -19,7 +45,7 @@ The item data requires a unique id, and children with unique id. All other data 
   }
 ```
 
-### Custom Content (customContent)
+#### Custom Content (customContent)
 
 If there is a customContent function, it will be called with the itemInfo to render the item inside the div with the class "entity-contents-display".
 

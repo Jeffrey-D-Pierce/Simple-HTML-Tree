@@ -10,34 +10,27 @@
       content="Example - Parent Child Hierarchy"
     />
     <title>Example Parent Child Hierarchy</title>
-    <script src="./src/main.js" type="module"></script>
-    <link href="./src/main.css" rel="stylesheet" />
+    <script src="./src/core/main.js" type="module"></script>
+    <link href="./src/core/main.css" rel="stylesheet" />
     <!-- Custom Content -->
-    <script src="./src/custom_content.js"></script>
-    <link href="./src/custom_content.css" rel="stylesheet" />
+    <script src="./src/customContent/custom_content.js"></script>
+    <link href="./src/customContent/custom_content.css" rel="stylesheet" />
     <!-- Control Scripts -->
     <script src="./src/control/scale_control.js"></script>
     <script src="./src/control/drag_control.js"></script>
+    <link href="./src/control/control_panel.css" rel="stylesheet" />
     <!-- Example Data -->
-    <script src="./src/example_data/items_ccc.js"></script>
-    <script src="./src/example_data/items_constraints.js"></script>
-    <script src="./src/example_data/items.js"></script>
-    <script src="./src/example_data/items_gwt.js"></script>
-    <script src="./src/example_data/items_html.js"></script>
+    <script id="data-source" src="./src/example_data/items.js"></script>
   </head>
   <body>
     <!-- Control Panel -->
     <div id="control-panel">
-      <label for="content-checkbox">Custom Content:</label>
-      <input type="checkbox" id="content-checkbox" checked name="content-checkbox">
-
-      <select name="example-data" id="example-data-select">
-        <option value="4">GWT</option>
-        <option value="1">Example</option>
-        <option value="0">HTML</option>
-        <option value="2">CCC</option>
-        <option value="3">Constraints</option>
-      </select>
+      <div id="control-panel-title">Controls</div>
+      <div class="control-group">
+        <label for="content-checkbox">Custom Content:</label>
+        <input type="checkbox" id="content-checkbox" checked name="content-checkbox">
+      </div>
+      <label for="options-select">Orientation:</label>        
       <select name="options" id="options-select">
         <option value="horizontal">Horizontal</option>
         <option value="vertical">Vertical</option>
@@ -45,10 +38,14 @@
       </select>
       <!-- Slider element -->
       <div>
+        <label id="slider-value" for="scale-slider">Scale (100%): </label>
         <input type="range" id="scale-slider" min="10" max="300" value="100">
         <!-- Display the value -->
-        <div id="slider-value">Current Value: 100</div>
       </div>
+    </div>
+    <div id="description">
+      <h1>Simple HTML Tree</h1>
+      <p></p>
     </div>
     <!-- Root Container - Hierachy displays here -->
     <div id="root-container">
@@ -61,49 +58,52 @@
       let orientation
       customContentOriginal = customContent
       document.addEventListener('DOMContentLoaded', function() {
-        items = items_gwt
-        Parent_Child_Hierarchy.render({rootElement: "root", items, customContent });
+        items = items_example
+        Simple_Tree.render({rootElement: "root", items, customContent });
       })
     </script>
 
     <!-- Script to control display -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
 
-        // Example: Handle event on an entity (a parent or child)
-        document.getElementById("root").addEventListener("mousedown", (e)=>{
-          var entity = e.target.closest('.entity');
-          if (entity && entity.querySelector('.notes')) {
-            entity.querySelector('.notes').style.display = "block"
-          }
-          // console.log("mousedown", e.target)
-        })
-
-        document.getElementById("root").addEventListener("mouseup", (e)=>{
-          var entity = e.target.closest('.entity');
-          if (entity && entity.querySelector('.notes')) {
-            entity.querySelector('.notes').style.display = "none"
-          }
-          // console.log("mouseup", e.target)
-        })
+      // Example: Handle event on an entity (a parent or child)
+      document.getElementById("root").addEventListener("mousedown", (e)=>{
+        var entity = e.target.closest('.entity');
+        if (entity && entity.querySelector('.notes')) {
+          entity.querySelector('.notes').style.display = "block"
+        }
+        // console.log("mousedown", e.target)
       })
 
-      // Handle the Selection to Change the Custom Content
-      document.addEventListener('DOMContentLoaded', function() {
-        var checkbox = document.getElementById('content-checkbox');
-        
-        checkbox.addEventListener('change', function() {
-          if(this.checked) {
-            addCSS('./src/custom_content.css')
+      document.getElementById("root").addEventListener("mouseup", (e)=>{
+        var entity = e.target.closest('.entity');
+        if (entity && entity.querySelector('.notes')) {
+          entity.querySelector('.notes').style.display = "none"
+        }
+        // console.log("mouseup", e.target)
+      })
+
+    // Handle the Selection to Change the Custom Content
+      var checkbox = document.getElementById('content-checkbox');
+      
+      checkbox.addEventListener('change', function() {
+        if(this.checked) {
+          document.getElementById('root').style.visibility = 'hidden';
+          requestAnimationFrame(() => {
+            addCSS('./src/customContent/custom_content.css')
             customContent = customContentOriginal
-            Parent_Child_Hierarchy.render({rootElement: "root", items, customContent});
-          } else {
-            customContent = undefined
-            removeCSS('custom_content.css')
-            Parent_Child_Hierarchy.clearCustomContent()
-            Parent_Child_Hierarchy.render({rootElement: "root", items, customContent});
-          }
-        });
+            Simple_Tree.render({rootElement: "root", items, orientation, customContent});
+            // Restore visibility
+            requestAnimationFrame(() => {
+              document.getElementById('root').style.visibility = 'visible';
+            });
+          });
+        } else {
+          customContent = undefined
+          removeCSS('custom_content.css')
+          Simple_Tree.clearCustomContent()
+          Simple_Tree.render({rootElement: "root", items, orientation, customContent});
+        }
       });
 
 
@@ -113,21 +113,7 @@
       selectElement.addEventListener('change', (event) => {
           orientation = event.target.value;
           // Call a function here with the selected value
-          Parent_Child_Hierarchy.render({ rootElement: "root", orientation, items, customContent });
-      });
-
-      // Handle the Selection to Change the example data
-      document.getElementById('example-data-select').addEventListener('change', (event) => {
-        if(event.target.value === "1") {
-          items = items_example
-        } else if (event.target.value === "0") {
-          items = items_html
-        } else if (event.target.value === "2") {
-          items = items_ccc
-        } else {
-          items = items_constraints
-        }
-        Parent_Child_Hierarchy.render({ rootElement: "root", items, orientation, customContent });
+          Simple_Tree.render({ rootElement: "root", orientation, items, customContent });
       });
 
       // Handle the events to change the scale
@@ -139,7 +125,7 @@
       // Add an event listener for the 'input' event on the slider
       slider.addEventListener('input', function() {
         // Update the display with the current value of the slider
-        sliderValueDisplay.textContent = 'Current Value: ' + this.value;
+        sliderValueDisplay.textContent = `Scale (${this.value}%):`;
         // Select the root element
         var rootElement = document.getElementById('root'); // replace 'root' with your actual root element's ID
       

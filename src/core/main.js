@@ -27,6 +27,7 @@
   */
   function Parent(entityInfo){
     const parentInfo = entityInfo.parent;
+    if (_itemsIndex[`entity-${entityInfo.id}`]) console.error("duplicate IDs:", entityInfo.id, "already exists")
     _itemsIndex[`entity-${entityInfo.id}`] = entityInfo
     const childrenClass =
       entityInfo.children && entityInfo.children.length && !entityInfo.hideChildren ? "" : "no-children";
@@ -99,7 +100,7 @@
   function itemsIndex(){
     return _itemsIndex
   }
-  if (window) window.Parent_Child_Hierarchy = { render, clearCustomContent, itemsIndex }
+  if (window) window.Simple_Tree = { render, clearCustomContent, itemsIndex }
   
 })();
 
