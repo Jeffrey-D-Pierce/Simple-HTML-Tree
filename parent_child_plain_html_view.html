@@ -22,6 +22,7 @@
     <script src="./src/example_data/items_ccc.js"></script>
     <script src="./src/example_data/items_constraints.js"></script>
     <script src="./src/example_data/items.js"></script>
+    <script src="./src/example_data/items_gwt.js"></script>
     <script src="./src/example_data/items_html.js"></script>
   </head>
   <body>
@@ -31,6 +32,7 @@
       <input type="checkbox" id="content-checkbox" checked name="content-checkbox">
 
       <select name="example-data" id="example-data-select">
+        <option value="4">GWT</option>
         <option value="1">Example</option>
         <option value="0">HTML</option>
         <option value="2">CCC</option>
@@ -59,7 +61,7 @@
       let orientation
       customContentOriginal = customContent
       document.addEventListener('DOMContentLoaded', function() {
-        items = items_example
+        items = items_gwt
         Parent_Child_Hierarchy.render({rootElement: "root", items, customContent });
       })
     </script>

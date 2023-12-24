@@ -48,8 +48,8 @@ function updateSvgLine(entityInfo) {
 
   // Get the line element inside the SVG
   const line = childElement.querySelector("svg.connector line");
-  console.log("parentLowerAnchor", parentLowerAnchor)
-  console.log("childUpperAnchor", childUpperAnchor)
+  //console.log("parentLowerAnchor", parentLowerAnchor)
+  //console.log("childUpperAnchor", childUpperAnchor)
   //console.log("x1", x1, "y1", y1, "x2", x2, "y2", y2)
 
   // Update the line's coordinates
