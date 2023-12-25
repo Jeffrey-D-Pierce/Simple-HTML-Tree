@@ -66,19 +66,19 @@
     <!-- Script to control display -->
     <script>
 
-      // Example: Handle event on an entity (a parent or child)
+      // Example: Handle event on an item (a parent or child)
       document.getElementById("root").addEventListener("mousedown", (e)=>{
-        var entity = e.target.closest('.entity');
-        if (entity && entity.querySelector('.notes')) {
-          entity.querySelector('.notes').style.display = "block"
+        var item = e.target.closest('.item');
+        if (item && item.querySelector('.notes')) {
+          item.querySelector('.notes').style.display = "block"
         }
         // console.log("mousedown", e.target)
       })
 
       document.getElementById("root").addEventListener("mouseup", (e)=>{
-        var entity = e.target.closest('.entity');
-        if (entity && entity.querySelector('.notes')) {
-          entity.querySelector('.notes').style.display = "none"
+        var item = e.target.closest('.item');
+        if (item && item.querySelector('.notes')) {
+          item.querySelector('.notes').style.display = "none"
         }
         // console.log("mouseup", e.target)
       })

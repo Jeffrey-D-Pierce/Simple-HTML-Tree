@@ -5,12 +5,12 @@ const items_example = [
     "notes": [],
     "faviconUrl":
       "src/images/exclamation.png",
-    "children": [
+    "items": [
       {
         "title": "Child",
         "id": 2,
         "notes": [],
-        "children": []
+        "items": []
       },
       {
         "title": "Child",
@@ -18,7 +18,7 @@ const items_example = [
         "notes": [],
         "faviconUrl":
           "src/images/exclamation.png",
-        "children": []
+        "items": []
       },
       {
         "title": "Child",
@@ -26,7 +26,7 @@ const items_example = [
         "notes": [],
         "faviconUrl":
           "src/images/exclamation.png",
-        "children": []
+        "items": []
       },
       {
         "title": "Parent",
@@ -34,7 +34,7 @@ const items_example = [
         "notes": [],
         "faviconUrl":
           "src/images/exclamation.png",
-        "children": [
+        "items": [
           {
             "title":
               "This is a page with a really long title and it will push everything to the right.",
@@ -42,14 +42,14 @@ const items_example = [
             "notes": [],
             "faviconUrl":
               "src/images/exclamation.png",
-            "children": [
+            "items": [
               {
                 "title": "Child",
                 "id": 107,
                 "notes": [],
                 "faviconUrl":
                   "src/images/exclamation.png",
-                "children": []
+                "items": []
               }
             ]
           },
@@ -59,49 +59,49 @@ const items_example = [
             "notes": [],
             "faviconUrl":
               "src/images/exclamation.png",
-            "children": [
+            "items": [
               {
                 "title": "Child",
                 "id": 10,
                 "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                 "faviconUrl":
                   "src/images/exclamation.png",
-                "children": [
+                "items": [
                   {
                     "title": "One of many",
                     "id": 11,
                     "notes": [],
                     "faviconUrl":
                       "src/images/exclamation.png",
-                    "children": [
+                    "items": [
                       {
                         "title": "One of many",
                         "id": 12,
                         "notes": [],
                         "faviconUrl":
                           "src/images/exclamation.png",
-                        "children": [
+                        "items": [
                           {
                             "title": "One of many",
                             "id": 13,
                             "notes": [],
                             "faviconUrl":
                               "src/images/exclamation.png",
-                            "children": [
+                            "items": [
                               {
                                 "title": "One of many",
                                 "id": 14,
                                 "notes": [],
                                 "faviconUrl":
                                   "src/images/exclamation.png",
-                                "children": [
+                                "items": [
                                   {
                                     "title": "One of many",
                                     "id": 15,
                                     "notes": [],
                                     "faviconUrl":
                                       "src/images/exclamation.png",
-                                    "children": []
+                                    "items": []
                                   },
                                   {
                                     "title": "One of many",
@@ -109,7 +109,7 @@ const items_example = [
                                     "notes": [],
                                     "faviconUrl":
                                       "src/images/exclamation.png",
-                                    "children": []
+                                    "items": []
                                   }
                                 ]
                               }
@@ -127,49 +127,49 @@ const items_example = [
                 "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                 "faviconUrl":
                   "src/images/exclamation.png",
-                "children": [
+                "items": [
                   {
                     "title": "Child",
                     "id": 17,
                     "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                     "faviconUrl":
                       "src/images/exclamation.png",
-                    "children": [
+                    "items": [
                       {
                         "title": "One of many",
                         "id": 18,
                         "notes": [],
                         "faviconUrl":
                           "src/images/exclamation.png",
-                        "children": [
+                        "items": [
                           {
                             "title": "One of many",
                             "id": 19,
                             "notes": [],
                             "faviconUrl":
                               "src/images/exclamation.png",
-                            "children": [
+                            "items": [
                               {
                                 "title": "One of many",
                                 "id": 20,
                                 "notes": [],
                                 "faviconUrl":
                                   "src/images/exclamation.png",
-                                "children": [
+                                "items": [
                                   {
                                     "title": "One of many",
                                     "id": 21,
                                     "notes": [],
                                     "faviconUrl":
                                       "src/images/exclamation.png",
-                                    "children": [
+                                    "items": [
                                       {
                                         "title": "One of many",
                                         "id": 22,
                                         "notes": [],
                                         "faviconUrl":
                                           "src/images/exclamation.png",
-                                        "children": []
+                                        "items": []
                                       },
                                       {
                                         "title": "One of many",
@@ -177,7 +177,7 @@ const items_example = [
                                         "notes": [],
                                         "faviconUrl":
                                           "src/images/exclamation.png",
-                                        "children": []
+                                        "items": []
                                       }
                                     ]
                                   }
@@ -193,35 +193,35 @@ const items_example = [
                         "notes": [],
                         "faviconUrl":
                           "src/images/exclamation.png",
-                        "children": [
+                        "items": [
                           {
                             "title": "One of many",
                             "id": 25,
                             "notes": ["One","Two","Three"],
                             "faviconUrl":
                               "src/images/exclamation.png",
-                            "children": [
+                            "items": [
                               {
                                 "title": "One of many",
                                 "id": 26,
                                 "notes": [],
                                 "faviconUrl":
                                   "src/images/exclamation.png",
-                                "children": [
+                                "items": [
                                   {
                                     "title": "One of many",
                                     "id": 27,
                                     "notes": [],
                                     "faviconUrl":
                                       "src/images/exclamation.png",
-                                    "children": [
+                                    "items": [
                                       {
                                         "title": "One of many",
                                         "id": 28,
                                         "notes": [],
                                         "faviconUrl":
                                           "src/images/exclamation.png",
-                                        "children": []
+                                        "items": []
                                       },
                                       {
                                         "title": "One of many",
@@ -229,7 +229,7 @@ const items_example = [
                                         "notes": [],
                                         "faviconUrl":
                                           "src/images/exclamation.png",
-                                        "children": []
+                                        "items": []
                                       }
                                     ]
                                   }
@@ -252,7 +252,7 @@ const items_example = [
             "notes": [],
             "faviconUrl":
               "src/images/exclamation.png",
-            "children": []
+            "items": []
           },
           {
             "title": "Child",
@@ -260,7 +260,7 @@ const items_example = [
             "notes": [],
             "faviconUrl":
               "src/images/exclamation.png",
-            "children": []
+            "items": []
           }
         ]
       }

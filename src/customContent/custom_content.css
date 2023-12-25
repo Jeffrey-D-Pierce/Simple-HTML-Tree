@@ -32,7 +32,7 @@
   text-overflow: ellipsis;
 }
 
-.entity-contents-display.boxed-entity {
+.item-contents-display.boxed-item {
   border: 1px solid lightgray;
   padding: 5px;
   background-color: white;
@@ -42,15 +42,15 @@
   width: 100px;
 }
 
-.css-connector  .entity::after {
+.css-connector  .item::after {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.css-connector  .entity-contents::before {
+.css-connector  .item-contents::before {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.css-connector  .entity-contents::after {
+.css-connector  .item-contents::after {
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -58,6 +58,6 @@
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.horizontal .entity {
+.horizontal .item {
   margin: 1px;
 }

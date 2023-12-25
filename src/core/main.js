@@ -17,80 +17,80 @@
     const item = items[0]
     item.rootItem = true
     item.customContent = item.customContent || customContent
-    nodesHTML += Parent(item);
+    nodesHTML += Item(item);
     return nodesHTML;
   }
   
   /* Parent
-  Given the entityInfo and parentInfo
-  Returns HTML for the entity and all children.
+  Given the itemInfo and parentInfo
+  Returns HTML for the item and all items.
   */
-  function Parent(entityInfo){
-    const parentInfo = entityInfo.parent;
-    if (_itemsIndex[`entity-${entityInfo.id}`]) console.error("duplicate IDs:", entityInfo.id, "already exists")
-    _itemsIndex[`entity-${entityInfo.id}`] = entityInfo
+  function Item(itemInfo){
+    const parentInfo = itemInfo.parent;
+    if (_itemsIndex[`item-${itemInfo.id}`]) console.error("duplicate IDs:", itemInfo.id, "already exists")
+    _itemsIndex[`item-${itemInfo.id}`] = itemInfo
     const childrenClass =
-      entityInfo.children && entityInfo.children.length && !entityInfo.hideChildren ? "" : "no-children";
+      itemInfo.items && itemInfo.items.length && !itemInfo.hideChildren ? "" : "no-items";
     return `
-    <div id='entity-${entityInfo.id}' class='entity ${siblingClass(entityInfo, parentInfo)} ${childrenClass}'>
+    <div id='item-${itemInfo.id}' class='item ${siblingClass(itemInfo, parentInfo)} ${childrenClass}'>
 
-      <div class='entity-contents'>
-        ${contents(entityInfo)}
+      <div class='item-contents'>
+        ${contents(itemInfo)}
       </div>
-      <div class='children-container'>
-        ${ children(entityInfo)}
+      <div class='items-container'>
+        ${ Items(itemInfo)}
       </div>
     </div>
     `;
   }
 
-  /* children
-  Given the parent, returns the rendered children as HTML
+  /* items
+  Given the parent, returns the rendered items as HTML
   */
-  function children(parent){
+  function Items(parent){
     if (parent.hideChildren) return "";
-    const children = parent.children;
+    const items = parent.items;
     let cHTML = ''
-    if (children && children.length > 0) children.forEach((child, i) => {
+    if (items && items.length > 0) items.forEach((item, i) => {
       //if (i > 1) return
-      child.parent = parent;
-      child.customContent = parent.customContent;
-      cHTML += Parent(child);    
+      item.parent = parent;
+      item.customContent = parent.customContent;
+      cHTML += Item(item);    
     });
     return cHTML;
   }
 
   /* siblingClass
-  Given entityInfo and parentInfo, returns the class needed to relate the entity to siblings.
+  Given itemInfo and parentInfo, returns the class needed to relate the item to siblings.
   */
-  function siblingClass(entityInfo){
-    const parentInfo = entityInfo.parent;
+  function siblingClass(itemInfo){
+    const parentInfo = itemInfo.parent;
     let sibling = "orphan";
-    if (parentInfo === undefined || parentInfo.children === undefined){
-    } else if (parentInfo.children.length === 1){
+    if (parentInfo === undefined || parentInfo.items === undefined){
+    } else if (parentInfo.items.length === 1){
       sibling = "only-child";
-    } else if (parentInfo.children[0].id == entityInfo.id) {
+    } else if (parentInfo.items[0].id == itemInfo.id) {
         sibling = "first-child"
-    } else if (parentInfo.children[parentInfo.children.length - 1].id == entityInfo.id){
+    } else if (parentInfo.items[parentInfo.items.length - 1].id == itemInfo.id){
         sibling = "last-child"
-    } else if (parentInfo.children.length > 1){
+    } else if (parentInfo.items.length > 1){
         sibling = "middle-child"
     }
     return sibling;
   }
 
-  // This is the default content rendering for an entity
-  function contents(entityInfo){
+  // This is the default content rendering for an item
+  function contents(itemInfo){
     // If there is a title, use it, otherwise use the id
-    function defaultTitle(entityInfo){
-      const title = entityInfo.title || entityInfo.id
-      return `<div class='entity-contents-display'>
-      <div class='entity-title-text' title='${title}'>
+    function defaultTitle(itemInfo){
+      const title = itemInfo.title || itemInfo.id
+      return `<div class='item-contents-display'>
+      <div class='item-title-text' title='${title}'>
         ${title}
         </div></div>`
     }
 
-    return entityInfo.customContent ? entityInfo.customContent(entityInfo) : defaultTitle(entityInfo)
+    return itemInfo.customContent ? itemInfo.customContent(itemInfo) : defaultTitle(itemInfo)
   }  
 
   function clearCustomContent () {

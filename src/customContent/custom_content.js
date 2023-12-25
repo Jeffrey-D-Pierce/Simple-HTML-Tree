@@ -1,10 +1,10 @@
-function customContent(entityInfo) {
+function customContent(itemInfo) {
   /* children
   Given the pagInfo, returns the img HTML with the screenshot
   */
-  function screenShot(entityInfo){
-    return entityInfo && entityInfo.screenshotSrc
-      ? `<img class='screeshot' src='${entityInfo.screenshotSrc}'/>`
+  function screenShot(itemInfo){
+    return itemInfo && itemInfo.screenshotSrc
+      ? `<img class='screeshot' src='${itemInfo.screenshotSrc}'/>`
       : ``;
   }
 
@@ -22,21 +22,21 @@ function customContent(entityInfo) {
     return notesHTML;
   }
 
-  return `<div class='entity-contents-display boxed-entity'>
-    <div class="entity-header">
-    <img class='favicon' src='${ entityInfo.faviconUrl || "./src/images/unknown-18-16.png"
+  return `<div class='item-contents-display boxed-item'>
+    <div class="item-header">
+    <img class='favicon' src='${ itemInfo.faviconUrl || "./src/images/unknown-18-16.png"
     }'/>
-    <div class='entity-title'>
-      <div class='entity-title-text' title='${
-        entityInfo.title || "Title"
+    <div class='item-title'>
+      <div class='item-title-text' title='${
+        itemInfo.title || "Title"
       }'>
-        ${entityInfo.title || "Title"}
+        ${itemInfo.title || "Title"}
       </div>
     </div>
     </div>
-    ${screenShot(entityInfo)}
+    ${screenShot(itemInfo)}
     <div class='notes'>
-    ${notes(entityInfo.notes)}
+    ${notes(itemInfo.notes)}
     </div>
     </div>
   `

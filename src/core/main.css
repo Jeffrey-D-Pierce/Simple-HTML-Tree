@@ -14,30 +14,30 @@ body {
   height: 100vh;
 }
 
-.entity-contents {
+.item-contents {
   position: relative;
 }
 
-.entity-contents-display {
+.item-contents-display {
   padding: 2px;
   background-color: white;
   max-width: 10em;
 }
 
 
-.entity-header {
+.item-header {
   display: flex;
   align-items: center;
   width: 100%;
 }
-.entity-title {
+.item-title {
   font-weight: bold;
   font-size: 8px;
   cursor: default;
   width: 100%;
 }
 
-.entity-title-text {
+.item-title-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -46,19 +46,19 @@ body {
   cursor: default;
 }
 
-.children-container {
+.items-container {
   margin-left: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.entity,
-.children-container {
+.item,
+.items-container {
   flex-grow: 0;
 }
 
 
-.centered .entity {
+.centered .item {
   position:relative;
   display: flex;
   margin-top: 0;
@@ -66,26 +66,26 @@ body {
   align-items: center;
 }
 
-.centered .entity-contents {
+.centered .item-contents {
   margin-bottom: 2em;
 }
 
-.centered .children-container {
+.centered .items-container {
   margin: 0px;
   display: flex;
-  align-items: flex-start; /* Align children to the top */
+  align-items: flex-start; /* Align items to the top */
   flex-direction: row;
-  justify-content: center; /* This will center the children horizontally */
+  justify-content: center; /* This will center the items horizontally */
   overflow: visible; /* This ensures the line is not clipped */
 }
 
-/* Additional styles to ensure proper spacing between children */
-.centered .children-container > .entity {
+/* Additional styles to ensure proper spacing between items */
+.centered .items-container > .item {
   margin: 0 10px; /* Adjust the spacing as needed */
 }
 
 /* Vertical line from parent to the horizontal line */
-.centered.css-connector .entity-contents::after {
+.centered.css-connector .item-contents::after {
   content: '';
   position: absolute;
   top: calc(100%);
@@ -97,13 +97,13 @@ body {
   /* The horizontal line */
 }
 
-.centered.css-connector .entity.no-children .entity-contents::after {
+.centered.css-connector .item.no-items .item-contents::after {
   display: none;
   /* Hide lines for an only child */
 }
 
 /* Vertical line from parent to the horizontal line */
-.centered.css-connector .entity::after {
+.centered.css-connector .item::after {
   content: '';
   position: absolute;
   top: -1em;
@@ -119,7 +119,7 @@ body {
 
 
 /* Horizontal line to the right */
-.centered.css-connector .entity.first-child::before {
+.centered.css-connector .item.first-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -134,7 +134,7 @@ body {
 }
 
 /* Horizontal line to the left */
-.centered.css-connector .entity.last-child::before {
+.centered.css-connector .item.last-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -149,7 +149,7 @@ body {
 }
 
 /* Horizontal line to the left and right */
-.centered.css-connector .entity.middle-child::before {
+.centered.css-connector .item.middle-child::before {
   content: '';
   position: absolute;
   top: -1em;
@@ -164,15 +164,15 @@ body {
 }
 
 
-.centered.css-connector .entity.only-child::before {
+.centered.css-connector .item.only-child::before {
   display: none;
 }
 
-.centered.css-connector .entity.orphan::after {
+.centered.css-connector .item.orphan::after {
   display: none;
 }
 
-.horizontal .entity {
+.horizontal .item {
   position: relative;
   /* Needed for absolute positioning of pseudo-elements */
   display: flex;
@@ -181,7 +181,7 @@ body {
 }
 
 /* Vertical line from the child up and down */
-.horizontal.css-connector .entity>.children-container::before {
+.horizontal.css-connector .item>.items-container::before {
   content: '';
   position: absolute;
   top: 0%;
@@ -194,7 +194,7 @@ body {
 }
 
 /* Vertical line from the child up */
-.horizontal.css-connector .entity.last-child>.children-container::before {
+.horizontal.css-connector .item.last-child>.items-container::before {
   content: '';
   position: absolute;
   top: -1px;
@@ -207,7 +207,7 @@ body {
 }
 
 /* Vertical line from the child down */
-.horizontal.css-connector .entity.first-child>.children-container::before {
+.horizontal.css-connector .item.first-child>.items-container::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -220,7 +220,7 @@ body {
 }
 
 /* Horizontal line from child to the vertical line */
-.horizontal.css-connector .entity-contents::before {
+.horizontal.css-connector .item-contents::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -233,7 +233,7 @@ body {
 }
 
 /* Horizontal line from parent to the vertical line */
-.horizontal.css-connector .entity-contents::after {
+.horizontal.css-connector .item-contents::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -245,27 +245,27 @@ body {
   /* The horizontal line */
 }
 
-.horizontal.css-connector .entity.only-child::after,
-.horizontal.css-connector .entity.only-child>.children-container::before {
+.horizontal.css-connector .item.only-child::after,
+.horizontal.css-connector .item.only-child>.items-container::before {
   display: none;
   /* Hide lines for an only child */
 }
 
-.horizontal.css-connector .entity.no-children .entity-contents::after {
+.horizontal.css-connector .item.no-items .item-contents::after {
   display: none;
   /* Hide lines for an only child */
 }
 
-.horizontal.css-connector .entity.orphan>.entity-contents::before {
+.horizontal.css-connector .item.orphan>.item-contents::before {
   display: none;
 }
 
-.horizontal.css-connector .entity.orphan>.children-container::before {
+.horizontal.css-connector .item.orphan>.items-container::before {
   display: none;
 }
 
 
-.vertical .entity {
+.vertical .item {
   position: relative;
   /* Needed for absolute positioning of pseudo-elements */
   margin: 2px;
@@ -273,7 +273,7 @@ body {
 
 
 /* Horizontal line from parent to the vertical line */
-.vertical.css-connector .entity-contents::before {
+.vertical.css-connector .item-contents::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -285,7 +285,7 @@ body {
   /* The horizontal line */
 }
 
-.vertical.css-connector .entity.first-child:after {
+.vertical.css-connector .item.first-child:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -293,13 +293,13 @@ body {
   left: -1em;
   /* Position to the left of the content */
   height: calc(100% + 4px);
-  /* The height of the line should be to the top of the children container from the middle of the last child */
+  /* The height of the line should be to the top of the items container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
   /* Shadow for the line */
 }
 
-.vertical.css-connector .entity.only-child .entity-contents:after {
+.vertical.css-connector .item.only-child .item-contents:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -307,13 +307,13 @@ body {
   left: -1em;
   /* Position to the left of the content */
   height: calc(50% + 2px);
-  /* The height of the line should be to the top of the children container from the middle of the last child */
+  /* The height of the line should be to the top of the items container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
   /* Shadow for the line */
 }
 
-.vertical.css-connector .entity.last-child .entity-contents:after {
+.vertical.css-connector .item.last-child .item-contents:after {
   content: "";
   position: absolute;
   top: -2px;
@@ -321,13 +321,13 @@ body {
   left: -1em;
   /* Position to the left of the content */
   height: calc(50% + 2px);
-  /* The height of the line should be to the top of the children container from the middle of the last child */
+  /* The height of the line should be to the top of the items container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
   /* Shadow for the line */
 }
 
-.vertical.css-connector .entity.middle-child:after {
+.vertical.css-connector .item.middle-child:after {
   content: '';
   position: absolute;
   top: -2px;
@@ -335,12 +335,12 @@ body {
   left: -1em;
   /* Position to the left of the content */
   height: calc(100% + 4px);
-  /* The height of the line should be to the top of the children container from the middle of the last child */
+  /* The height of the line should be to the top of the items container from the middle of the last child */
   border-left: calc(var(--connector-line-width)) solid #000;
   /* The vertical line */
   /* Shadow for the line */
 }
 
-.vertical.css-connector .entity.orphan>.entity-contents::before {
+.vertical.css-connector .item.orphan>.item-contents::before {
   display: none;
 }

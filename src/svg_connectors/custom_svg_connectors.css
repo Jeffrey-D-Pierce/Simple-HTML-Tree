@@ -10,10 +10,10 @@
 }
 
 
-.entity-contents-display {
+.item-contents-display {
   position: relative; /* Required for absolute positioning of children */
   overflow: visible;
-  /* Other styles for the entity div */
+  /* Other styles for the item div */
 }
 
 .centered .upper-anchor, .centered .lower-anchor {
@@ -27,12 +27,12 @@
 }
 
 .centered .upper-anchor {
-  top: 0; /* Position at the top of the entity div */
+  top: 0; /* Position at the top of the item div */
   margin-top: -2px; /* Adjust for the height of the circle to align the center */
 }
 
 .centered .lower-anchor {
-  bottom: 0; /* Position at the bottom of the entity div */
+  bottom: 0; /* Position at the bottom of the item div */
   margin-bottom: -2px; /* Adjust for the height of the circle to align the center */
 }  
 

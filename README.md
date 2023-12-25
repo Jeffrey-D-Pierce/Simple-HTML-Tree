@@ -4,7 +4,7 @@
 
 ### Minimum
 
-The minimla configuration requires main.js to render the HTML and main.css to style the entities and relationships.
+The minimal configuration requires main.js to render the HTML and main.css to style the items and relationships.
 
 ![Alt text](./documentation/images/minimum.png)
 
@@ -47,7 +47,7 @@ The item data requires a unique id, and children with unique id. All other data 
 
 #### Custom Content (customContent)
 
-If there is a customContent function, it will be called with the itemInfo to render the item inside the div with the class "entity-contents-display".
+If there is a customContent function, it will be called with the itemInfo to render the item inside the div with the class "item-contents-display".
 
 If there is no customContent function on the item, the title (if there is one) or id will display in the rectangle.
 

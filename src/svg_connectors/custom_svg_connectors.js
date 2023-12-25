@@ -1,21 +1,21 @@
-function customContent(entityInfo) {
+function customContent(itemInfo) {
   /* children
   Given the pagInfo, returns the img HTML with the screenshot
   */
-  setTimeout(()=>{connectParent(entityInfo)},1)
+  setTimeout(()=>{connectParent(itemInfo)},1)
   return `
-    <div class='entity-contents-display'>
+    <div class='item-contents-display'>
       <SVG class="connector">
         <line x1="0" y1="0" x2="0" y2="0" stroke="gray" stroke-width="1"></line>
       </SVG> 
       <div class="lower-anchor">
       </div>
-      <div class="entity-header">
-        <div class='entity-title'>
-          <div class='entity-title-text' title='${
-            entityInfo.title || "Title"
+      <div class="item-header">
+        <div class='item-title'>
+          <div class='item-title-text' title='${
+            itemInfo.title || "Title"
           }'>
-            ${entityInfo.title || "Title"}
+            ${itemInfo.title || "Title"}
           </div>
         </div>
       </div>
@@ -25,17 +25,17 @@ function customContent(entityInfo) {
   `
 }
 
-function connectParent(entityInfo){
-  if (!entityInfo.parent || !entityInfo.parent.id || !entityInfo.id) return
-  updateSvgLine(entityInfo);
+function connectParent(itemInfo){
+  if (!itemInfo.parent || !itemInfo.parent.id || !itemInfo.id) return
+  updateSvgLine(itemInfo);
 }
 
-function updateSvgLine(entityInfo) {
-  const parentEnityId = "entity-"+entityInfo.parent.id
-  const childEntityId = "entity-"+entityInfo.id
+function updateSvgLine(itemInfo) {
+  const parentEnityId = "item-"+itemInfo.parent.id
+  const childItemId = "item-"+itemInfo.id
   // Get the bounding rectangles of the anchors
   const parentElement = document.getElementById(parentEnityId)
-  const childElement = document.getElementById(childEntityId)
+  const childElement = document.getElementById(childItemId)
   const parentLowerAnchor = parentElement.querySelector(".lower-anchor").getBoundingClientRect();
   const childUpperAnchor = childElement.querySelector(".upper-anchor").getBoundingClientRect();
   const svg = childElement.querySelector("svg.connector").getBoundingClientRect(); // Assuming the SVG is inside the child element
