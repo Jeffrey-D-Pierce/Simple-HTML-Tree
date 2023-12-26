@@ -4,7 +4,7 @@
 
 ### Minimum
 
-The minimal configuration requires main.js to render the HTML and main.css to style the items and relationships.
+The minimal configuration as demonstrated by minimum.html requires main.js to render the HTML and main.css to style the items and relationships.
 
 ![Alt text](./documentation/images/minimum.png)
 
@@ -15,12 +15,12 @@ The minimal configuration requires main.js to render the HTML and main.css to st
 
 #### Item Data
 
-The item data requires a unique id, and children with unique id.
+The item data requires a unique id, and children items with unique id.
 
 ```JSON
   {
     "id": 1, 
-    "children": [
+    "items": [
       { "id": 2 } 
     ]
   }
@@ -30,7 +30,7 @@ The item data requires a unique id, and children with unique id.
 
 #### Custom Item Data
 
-The item data requires a unique id, and children with unique id. All other data is optional.
+The item data requires a unique id, and children items with unique id. All other data is optional.
 
 ```JSON
   {
@@ -39,7 +39,7 @@ The item data requires a unique id, and children with unique id. All other data 
     "notes": [], // Example Template variable
     "faviconUrl": "", // Example Template variable
     "customContent": "Function(item)" // Used to render content
-    "children": [
+    "items": [
       { "id": 2 } 
     ]
   }
@@ -49,9 +49,9 @@ The item data requires a unique id, and children with unique id. All other data 
 
 If there is a customContent function, it will be called with the itemInfo to render the item inside the div with the class "item-contents-display".
 
-If there is no customContent function on the item, the title (if there is one) or id will display in the rectangle.
+If there is no customContent function on the item, the title (if there is one) or id will display.
 
-Set the function once at the root item where it is inherited by all children. In the rendering of children, the customContent function is copied to the child along with a reference to the parent. The function customContent has access to the child and parent info.
+Set the customContent function once at the root item where it is inherited by all children. In the rendering of children, the customContent function is copied to the child along with a reference to the parent. The function customContent has access to the child and parent info.
 
 ## Realizations
 
@@ -60,16 +60,16 @@ Set the function once at the root item where it is inherited by all children. In
 Unlike graphs with nodes and edges, hierarchical data has a controller-to-controlled relationship such as parent-child or supervisor-subordinate. This makes identifying the relationships and managing them easier.
 
 - Assumptions of inheritance are possible.
-- The rectangle of space is determined by the parent and all descendants.
+- The rectangle of space required for rendering is determined by the parent and all descendants.
 
 ### Horizontal vs. Vertical vs. Centered is controlled by the parent positioning the children
 
-After coding this layout:
-![Alt text](./documentation/images/horizontal_layout.png)
+In the process of defining the CSS for this layout:
+![CSS defined](./documentation/images/horizontal_layout.png)
 
 The CSS broke and this image is what triggered the realization.
 
-![Alt text](./documentation/images/vertical_vanilla.png)
+![Broken CSS](./documentation/images/vertical_vanilla.png)
 
 ### Rendering of relationships is controlled by sibling type
 
