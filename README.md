@@ -26,6 +26,10 @@ The item data requires a unique id, and children items with unique id.
   }
 ```
 
+#### Orientation
+
+Orientation is controlled in CSS by setting one of three classes (horizontal, vertical, centered) to the root element. This 
+
 ### Customization
 
 #### Custom Item Data
@@ -65,11 +69,11 @@ Unlike graphs with nodes and edges, hierarchical data has a controller-to-contro
 ### Horizontal vs. Vertical vs. Centered is controlled by the parent positioning the children
 
 In the process of defining the CSS for this layout:
-![CSS defined](./documentation/images/horizontal_layout.png)
+![CSS defined](./docs/images/horizontal_layout.png)
 
 The CSS broke and this image is what triggered the realization.
 
-![Broken CSS](./documentation/images/vertical_vanilla.png)
+![Broken CSS](./docs/images/vertical_vanilla.png)
 
 ### Rendering of relationships is controlled by sibling type
 

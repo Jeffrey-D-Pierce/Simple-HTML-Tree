@@ -55,11 +55,11 @@
     <!-- Script to initially render example data -->
     <script>
       let items
-      let orientation
+      let orientation = "horizontal"
       customContentOriginal = customContent
       document.addEventListener('DOMContentLoaded', function() {
         items = items_example
-        Simple_Tree.render({rootElement: "root", items, customContent });
+        Simple_Tree.render({rootElement: "root", items, customContent, orientation });
       })
     </script>
 
