@@ -57,6 +57,9 @@ body {
   flex-grow: 0;
 }
 
+.invisible {
+  display: none;
+}
 
 .centered .item {
   position:relative;

@@ -38,7 +38,7 @@
       <div class='item-contents'>
         ${contents(itemInfo)}
       </div>
-      <div class='items-container'>
+      <div class='items-container ${itemInfo.hideChildren ? "invisible" : ""}'>
         ${ Items(itemInfo)}
       </div>
     </div>
@@ -49,7 +49,6 @@
   Given the parent, returns the rendered items as HTML
   */
   function Items(parent){
-    if (parent.hideChildren) return "";
     const items = parent.items;
     let cHTML = ''
     if (items && items.length > 0) items.forEach((item, i) => {

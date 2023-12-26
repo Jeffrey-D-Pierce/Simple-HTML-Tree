@@ -18,7 +18,7 @@ const items_example = [
         "notes": [],
         "faviconUrl":
           "src/images/exclamation.png",
-        "items": []
+        "items": [],
       },
       {
         "title": "Child",
@@ -89,11 +89,12 @@ const items_example = [
                               "src/images/exclamation.png",
                             "items": [
                               {
-                                "title": "One of many",
+                                "title": "Parent with hidden children",
                                 "id": 14,
                                 "notes": [],
                                 "faviconUrl":
                                   "src/images/exclamation.png",
+                                "hideChildren": true,
                                 "items": [
                                   {
                                     "title": "One of many",

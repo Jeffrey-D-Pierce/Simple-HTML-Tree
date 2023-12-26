@@ -12,8 +12,10 @@ Features:
 
 - Custom Content - Toggle to switch between default and custom.
 - Orientation - Select orientation to change root class (horizontal, vertical, or centered)
+- Dynamic Content
+  - Hidden notes: Click on any "Child with Notes" to see notes
+  - Hidden chidren: Click on "Parent with hidden children" to show and hide children
 - Scale - Adjust slider to scale the root element.
-- Dynamic Content - Click on any "Child with Notes" to see notes
 - Panning - Click and drag the tree to move it around
 
 ![Controls in the demo](/docs/images/demo.gif)
@@ -53,7 +55,6 @@ The item data requires a unique id, and children items with unique id.
           rootElement: undefined, // will default to "root", 
           orientation: undefined, // horizontal, vertical, or centered
           customContent: undefined, // If provided, all items will render using the same customContent, unless an item has been assigned customerContent
-          hideChildren: undefined, // If true, the tree is trimmed
           items 
         }
         const indexedItems = Simple_Tree.render(instructions);
@@ -116,7 +117,7 @@ If an item has childeren, there is a line from the parent.
 All childern have a line to toward the parent. Siblings have a connecting line to other siblings.
 The connecting line is determined by the sibling order:
 
-- only-child - has no connecting line to other siblings.
+- only-child - only connection is to the parent. There are no connecting line to other siblings.
 - first-child - the connecting line starts at the line to the parent and extends toward siblings.
 - middle-child - the connecting line extends toward both the first-child and the last-child
 - last-child - the connecting line starts at the line toward the parent and extends toward siblings.

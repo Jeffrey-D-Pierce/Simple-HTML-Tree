@@ -55,11 +55,12 @@
     <!-- Script to initially renderTree example data -->
     <script>
       let items
+      let indexedItems // Returned by renderTree
       let orientation = "horizontal"
       customContentOriginal = customContent
       document.addEventListener('DOMContentLoaded', function() {
         items = items_example
-        const indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
+        indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
         console.log("Indexed Items:", indexedItems)
       })
     </script>
@@ -73,6 +74,10 @@
         if (item && item.querySelector('.notes')) {
           item.querySelector('.notes').style.display = "block"
         }
+        if (indexedItems[item.id].hideChildren != undefined) {
+          indexedItems[item.id].hideChildren = !indexedItems[item.id].hideChildren
+          indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
+        }
         // console.log("mousedown", e.target)
       })
 
@@ -81,7 +86,7 @@
         if (item && item.querySelector('.notes')) {
           item.querySelector('.notes').style.display = "none"
         }
-        // console.log("mouseup", e.target)
+       // console.log("mouseup", e.target)
       })
 
     // Handle the Selection to Change the Custom Content
