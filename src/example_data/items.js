@@ -61,7 +61,7 @@ const items_example = [
               "src/images/exclamation.png",
             "items": [
               {
-                "title": "Child",
+                "title": "Child with Notes",
                 "id": 10,
                 "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                 "faviconUrl":
@@ -122,14 +122,14 @@ const items_example = [
                 ]
               },
                             {
-                "title": "Child",
+                "title": "Child with Notes",
                 "id": 108,
                 "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                 "faviconUrl":
                   "src/images/exclamation.png",
                 "items": [
                   {
-                    "title": "Child",
+                    "title": "Child with Notes",
                     "id": 17,
                     "notes": ["Note 1", "Note 1", "Note 1", "Note 1", "Note 2"],
                     "faviconUrl":

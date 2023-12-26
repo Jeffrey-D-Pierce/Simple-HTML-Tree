@@ -1,6 +1,22 @@
 # Simple HTML Tree
 
-[Demo](Simple_HTML_Tree.html)
+## Objectives
+
+Create a simple HTML Tree that is easy-to-use (integrate, operate, and customize). This approach leverages JSON to control the data (entities and relationships), JavaScript to control the content, and CSS to control the visual appearance.
+
+## Demo
+
+[GitHub Pages](https://jeffrey-d-pierce.github.io/Simple-HTML-Tree/Simple_HTML_Tree.html)
+
+Features:
+
+- Custom Content - Toggle to switch between default and custom.
+- Orientation - Select orientation to change root class (horizontal, vertical, or centered)
+- Scale - Adjust slider to scale the root element.
+- Dynamic Content - Click on any "Child with Notes" to see notes
+- Panning - Click and drag the tree to move it around
+
+![Controls in the demo](/docs/images/demo.gif)
 
 ## How to use
 
@@ -8,7 +24,7 @@
 
 The minimal configuration as demonstrated by minimum.html requires main.js to render the HTML and main.css to style the items and relationships.
 
-![Alt text](./documentation/images/minimum.png)
+![Alt text](./docs/images/minimum.png)
 
 #### Files
 
@@ -28,9 +44,26 @@ The item data requires a unique id, and children items with unique id.
   }
 ```
 
+#### Render
+
+```JavaScript
+      document.addEventListener('DOMContentLoaded', ()=>{
+        const items = formatItems(YOUR_DATA)
+        let instructions = {
+          rootElement: undefined, // will default to "root", 
+          orientation: undefined, // horizontal, vertical, or centered
+          customContent: undefined, // If provided, all items will render using the same customContent, unless an item has been assigned customerContent
+          hideChildren: undefined, // If true, the tree is trimmed
+          items 
+        }
+        const indexedItems = Simple_Tree.render(instructions);
+      })
+    </script>
+```
+
 #### Orientation
 
-Orientation is controlled in CSS by setting one of three classes (horizontal, vertical, centered) to the root element. This 
+Orientation is controlled in CSS by setting one of three classes (horizontal, vertical, centered) to the root element.
 
 ### Customization
 

@@ -10,7 +10,7 @@
       content="Example - Parent Child Hierarchy"
     />
     <title>Example Parent Child Hierarchy</title>
-    <script src="./src/core/main.js" type="module"></script>
+    <script src="./src/core/main.js" ></script>
     <link href="./src/core/main.css" rel="stylesheet" />
     <!-- Custom Content -->
     <script src="./src/customContent/custom_content.js"></script>
@@ -52,14 +52,15 @@
       <div id="root"  class="css-connector"></div>
     </div>
 
-    <!-- Script to initially render example data -->
+    <!-- Script to initially renderTree example data -->
     <script>
       let items
       let orientation = "horizontal"
       customContentOriginal = customContent
       document.addEventListener('DOMContentLoaded', function() {
         items = items_example
-        Simple_Tree.render({rootElement: "root", items, customContent, orientation });
+        const indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
+        console.log("Indexed Items:", indexedItems)
       })
     </script>
 
@@ -92,7 +93,7 @@
           requestAnimationFrame(() => {
             addCSS('./src/customContent/custom_content.css')
             customContent = customContentOriginal
-            Simple_Tree.render({rootElement: "root", items, orientation, customContent});
+            Simple_Tree.renderTree({rootElement: "root", items, orientation, customContent});
             // Restore visibility
             requestAnimationFrame(() => {
               document.getElementById('root').style.visibility = 'visible';
@@ -102,7 +103,7 @@
           customContent = undefined
           removeCSS('custom_content.css')
           Simple_Tree.clearCustomContent()
-          Simple_Tree.render({rootElement: "root", items, orientation, customContent});
+          Simple_Tree.renderTree({rootElement: "root", items, orientation, customContent});
         }
       });
 
@@ -113,7 +114,7 @@
       selectElement.addEventListener('change', (event) => {
           orientation = event.target.value;
           // Call a function here with the selected value
-          Simple_Tree.render({ rootElement: "root", orientation, items, customContent });
+          Simple_Tree.renderTree({ rootElement: "root", orientation, items, customContent });
       });
 
       // Handle the events to change the scale

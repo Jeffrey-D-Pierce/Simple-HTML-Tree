@@ -1,6 +1,6 @@
 (function() {
   let _itemsIndex = {}
-  function render(hierarchyInformation){
+  function renderTree(hierarchyInformation){
     let { rootElement = "root", orientation, items, customContent } = hierarchyInformation
     const element = document.getElementById(rootElement)
 
@@ -9,6 +9,7 @@
     orientations.forEach(o => element.classList.remove(o));
     element.classList.add(orientation);
     element.innerHTML = items ? displayItems(items, customContent) : "No Items Array";
+    return _itemsIndex
   }
 
   function displayItems(items, customContent) {
@@ -100,7 +101,7 @@
   function itemsIndex(){
     return _itemsIndex
   }
-  if (window) window.Simple_Tree = { render, clearCustomContent, itemsIndex }
+  if (window) window.Simple_Tree = { renderTree, clearCustomContent, itemsIndex }
   
 })();
 
