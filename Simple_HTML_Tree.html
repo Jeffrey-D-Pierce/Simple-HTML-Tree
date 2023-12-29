@@ -42,6 +42,9 @@
         <input type="range" id="scale-slider" min="10" max="300" value="100">
         <!-- Display the value -->
       </div>
+      <div>
+        <button id="find-limit">Find Limit</button> <label id="limit-label">Untested</label>
+      </div>
     </div>
     <div id="description">
       <h1>Simple HTML Tree</h1>
@@ -67,7 +70,37 @@
 
     <!-- Script to control display -->
     <script>
-
+      // Find Limit
+      document.getElementById("find-limit").addEventListener("click", (e)=>{
+        const test_items = [{
+              id: window.crypto.randomUUID(),
+              items: []
+            }]
+        function addItem(items, number = 1){
+          for ( i = 1; i <= number; i++){
+            const length = Object.keys(items).length
+            const item = Object.keys(items)[Math.floor(Math.random()* length)]
+            items[item].items.push(
+              {
+                id: window.crypto.randomUUID(),
+                items: []
+              }
+            )
+          }
+        }
+        function breakit(test_items){
+          const increments = 100
+          const last = Date.now();
+          const indexedItems = Simple_Tree.renderTree({rootElement: "root", items:test_items, customContent, orientation })
+          const end = Date.now()
+          addItem(indexedItems, increments);
+          const count = Object.keys(indexedItems).length;
+          document.getElementById("limit-label").innerHTML = `#: ${count}<br>last ms: ${(end-last)}`
+          if (end-last < 500) setTimeout(() => {breakit(test_items)},1)
+        }
+        const start = Date.now()
+        breakit(test_items)
+      })
       // Example: Handle event on an item (a parent or child)
       document.getElementById("root").addEventListener("mousedown", (e)=>{
         var item = e.target.closest('.item');

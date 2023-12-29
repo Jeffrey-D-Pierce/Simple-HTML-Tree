@@ -1,24 +1,26 @@
 (function() {
-  let _itemsIndex = {}
+  const _trees = {}
   function renderTree(hierarchyInformation){
     let { rootElement = "root", orientation, items, customContent } = hierarchyInformation
+    _trees[rootElement] = hierarchyInformation
     const element = document.getElementById(rootElement)
 
     const orientations = ["horizontal", "vertical", "centered"]
     if (!orientations.includes(orientation)) orientation = "horizontal"
     orientations.forEach(o => element.classList.remove(o));
     element.classList.add(orientation);
-    element.innerHTML = items ? displayItems(items, customContent) : "No Items Array";
-    return _itemsIndex
+    const itemsIndex = {};
+    element.innerHTML = items ? displayItems(items, customContent, itemsIndex) : "No Items Array";
+    _trees[rootElement].itemsIndex = itemsIndex
+    return itemsIndex
   }
 
-  function displayItems(items, customContent) {
+  function displayItems(items, customContent, itemsIndex) {
     let nodesHTML = "";
-    _itemsIndex = {};
     const item = items[0]
     item.rootItem = true
     item.customContent = item.customContent || customContent
-    nodesHTML += Item(item);
+    nodesHTML += Item(item, itemsIndex);
     return nodesHTML;
   }
   
@@ -26,10 +28,10 @@
   Given the itemInfo and parentInfo
   Returns HTML for the item and all items.
   */
-  function Item(itemInfo){
+  function Item(itemInfo, itemsIndex){
     const parentInfo = itemInfo.parent;
-    if (_itemsIndex[`item-${itemInfo.id}`]) console.error("duplicate IDs:", itemInfo.id, "already exists")
-    _itemsIndex[`item-${itemInfo.id}`] = itemInfo
+    if (itemsIndex[`item-${itemInfo.id}`]) console.error("duplicate IDs:", itemInfo.id, "already exists")
+    itemsIndex[`item-${itemInfo.id}`] = itemInfo
     const childrenClass =
       itemInfo.items && itemInfo.items.length && !itemInfo.hideChildren ? "" : "no-items";
     return `
@@ -39,7 +41,7 @@
         ${contents(itemInfo)}
       </div>
       <div class='items-container ${itemInfo.hideChildren ? "invisible" : ""}'>
-        ${ Items(itemInfo)}
+        ${ Items(itemInfo, itemsIndex)}
       </div>
     </div>
     `;
@@ -48,14 +50,14 @@
   /* items
   Given the parent, returns the rendered items as HTML
   */
-  function Items(parent){
+  function Items(parent, itemsIndex){
     const items = parent.items;
     let cHTML = ''
     if (items && items.length > 0) items.forEach((item, i) => {
       //if (i > 1) return
       item.parent = parent;
       item.customContent = parent.customContent;
-      cHTML += Item(item);    
+      cHTML += Item(item, itemsIndex);    
     });
     return cHTML;
   }
@@ -97,10 +99,12 @@
     const keys = Object.keys(_itemsIndex)
     keys.forEach((key) => _itemsIndex[key].customContent = undefined)
   }
-  function itemsIndex(){
-    return _itemsIndex
+
+  function trees(){
+    return _trees
   }
-  if (window) window.Simple_Tree = { renderTree, clearCustomContent, itemsIndex }
+
+  if (window) window.Simple_Tree = { renderTree, clearCustomContent, trees }
   
 })();
 
