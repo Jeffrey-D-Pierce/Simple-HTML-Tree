@@ -1,0 +1,54 @@
+.item-title-text {
+  font-weight: bold;
+  font-size:small;
+}
+
+.description-simple {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-contents-display {
+  max-width: 25em;
+}
+
+.description {
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2em;      /* Adjust as needed */
+  max-height: 2.4em;       /* Adjust based on line-height (e.g., 2 lines) */
+  word-wrap: break-word;
+}
+
+.item-contents-display.boxed-item {
+  border: 1px solid lightgray;
+  padding: 5px;
+  background-color: white;
+  /* Sets the background color to white */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  /* Adds a shadow */
+  width: 25em;
+}
+
+.css-connector  .item::after {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.css-connector  .item-contents::before {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.css-connector  .item-contents::after {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.css-connector .children-container::before {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.horizontal .item {
+  margin: 1px;
+}

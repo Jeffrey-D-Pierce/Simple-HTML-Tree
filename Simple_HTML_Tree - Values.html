@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Example - Values Hierachy"
+    />
+    <title>Values Hierarchy</title>
+    <script src="./src/core/main.js" ></script>
+    <link href="./src/core/main.css" rel="stylesheet" />
+    <!-- Custom Content -->
+    <script src="./src/customContent/customContentValues/custom_content.js"></script>
+    <link href="./src/customContent/customContentValues/custom_content.css" rel="stylesheet" />
+    <!-- Control Scripts -->
+    <script src="./src/control/scale_control.js"></script>
+    <script src="./src/control/drag_control.js"></script>
+    <link href="./src/control/control_panel.css" rel="stylesheet" />
+    <!-- Example Data -->
+    <script id="data-source" src="./src/example_data/items_values.js"></script>
+  </head>
+  <body>
+    <!-- Control Panel -->
+    <div id="control-panel">
+      <div id="control-panel-title">Controls</div>
+      <div class="control-group">
+        <label for="content-checkbox">Custom Content:</label>
+        <input type="checkbox" id="content-checkbox" checked name="content-checkbox">
+      </div>
+      <label for="options-select">Orientation:</label>        
+      <select name="options" id="options-select">
+        <option value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+        <option value="centered">Centered</option>
+      </select>
+      <!-- Slider element -->
+      <div>
+        <label id="slider-value" for="scale-slider">Scale (100%): </label>
+        <input type="range" id="scale-slider" min="10" max="300" value="100">
+        <!-- Display the value -->
+      </div>
+      <div>
+        <button id="find-limit">Find Limit</button> <label id="limit-label">Untested</label>
+      </div>
+    </div>
+    <div id="description">
+      <h1>Values</h1>
+      <p></p>
+    </div>
+    <!-- Root Container - Hierachy displays here -->
+    <div id="root-container">
+      <div id="root"  class="css-connector"></div>
+    </div>
+
+    <!-- Script to initially renderTree example data -->
+    <script>
+      let items
+      let indexedItems // Returned by renderTree
+      let orientation = "horizontal"
+      customContentOriginal = customContent
+      document.addEventListener('DOMContentLoaded', function() {
+        items = items_values
+        indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
+        console.log("Indexed Items:", indexedItems)
+      })
+    </script>
+
+    <!-- Script to control display -->
+    <script>
+      // Find Limit
+      document.getElementById("find-limit").addEventListener("click", (e)=>{
+        const test_items = [{
+              id: window.crypto.randomUUID(),
+              items: []
+            }]
+        function addItem(items, number = 1){
+          for ( i = 1; i <= number; i++){
+            const length = Object.keys(items).length
+            const item = Object.keys(items)[Math.floor(Math.random()* length)]
+            items[item].items.push(
+              {
+                id: window.crypto.randomUUID(),
+                items: []
+              }
+            )
+          }
+        }
+        function breakit(test_items){
+          const increments = 100
+          const last = Date.now();
+          const indexedItems = Simple_Tree.renderTree({rootElement: "root", items:test_items, customContent, orientation })
+          const end = Date.now()
+          addItem(indexedItems, increments);
+          const count = Object.keys(indexedItems).length;
+          document.getElementById("limit-label").innerHTML = `#: ${count}<br>last ms: ${(end-last)}`
+          if (end-last < 500) setTimeout(() => {breakit(test_items)},1)
+        }
+        const start = Date.now()
+        breakit(test_items)
+      })
+      // Example: Handle event on an item (a parent or child)
+      document.getElementById("root").addEventListener("mousedown", (e)=>{
+        var item = e.target.closest('.item');
+        if (item && item.querySelector('.notes')) {
+          item.querySelector('.notes').style.display = "block"
+        }
+        if (indexedItems[item.id].hideChildren != undefined) {
+          indexedItems[item.id].hideChildren = !indexedItems[item.id].hideChildren
+          indexedItems = Simple_Tree.renderTree({rootElement: "root", items, customContent, orientation });
+        }
+        // console.log("mousedown", e.target)
+      })
+
+      document.getElementById("root").addEventListener("mouseup", (e)=>{
+        var item = e.target.closest('.item');
+        if (item && item.querySelector('.notes')) {
+          item.querySelector('.notes').style.display = "none"
+        }
+       // console.log("mouseup", e.target)
+      })
+
+    // Handle the Selection to Change the Custom Content
+      var checkbox = document.getElementById('content-checkbox');
+      
+      checkbox.addEventListener('change', function() {
+        if(this.checked) {
+          document.getElementById('root').style.visibility = 'hidden';
+          requestAnimationFrame(() => {
+            addCSS('./src/customContent/customContentValues/custom_content.css')
+            customContent = customContentOriginal
+            Simple_Tree.renderTree({rootElement: "root", items, orientation, customContent});
+            // Restore visibility
+            requestAnimationFrame(() => {
+              document.getElementById('root').style.visibility = 'visible';
+            });
+          });
+        } else {
+          customContent = undefined
+          removeCSS('custom_content.css')
+          Simple_Tree.clearCustomContent()
+          Simple_Tree.renderTree({rootElement: "root", items, orientation, customContent});
+        }
+      });
+
+
+      // Handle the Selection to Change the Orientation
+      var selectElement = document.getElementById('options-select');
+
+      selectElement.addEventListener('change', (event) => {
+          orientation = event.target.value;
+          // Call a function here with the selected value
+          Simple_Tree.renderTree({ rootElement: "root", orientation, items, customContent });
+      });
+
+      // Handle the events to change the scale
+
+      // Select the slider and the value display element
+      const slider = document.getElementById('scale-slider');
+      const sliderValueDisplay = document.getElementById('slider-value');
+      
+      // Add an event listener for the 'input' event on the slider
+      slider.addEventListener('input', function() {
+        // Update the display with the current value of the slider
+        sliderValueDisplay.textContent = `Scale (${this.value}%):`;
+        // Select the root element
+        var rootElement = document.getElementById('root'); // replace 'root' with your actual root element's ID
+      
+        // Set the scale
+        var scaleValue = this.value / 100; // for 80% scale
+      
+        // Apply the transform style to scale
+        // rootElement.style.transform = 'scale(' + scaleValue + ')';
+        updateScale(rootElement, scaleValue)
+      
+      });
+
+      // Setup drag control
+      dragControl('root')
+      dragControl('control-panel', true)
+
+      function addCSS(css_file) {
+        var link = document.createElement('link');
+        link.href = css_file;
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+
+        document.head.appendChild(link);
+      }
+
+      function removeCSS(css_file) {
+        var links = document.getElementsByTagName('link');
+        for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            if (link.href && link.href.includes(css_file)) {
+                link.parentNode.removeChild(link);
+                break;
+            }
+        }
+      }
+
+      </script>
+  </body>
+</html>
